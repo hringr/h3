@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using hringr.Models;
+using hringr.DAL;
+using hringr.Repository;
+
 
 namespace hringr.Controllers
 {

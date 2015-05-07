@@ -18,6 +18,11 @@ namespace hringr.DAL
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<GroupMember> GroupMembers { get; set; }
+
+        internal void SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     
