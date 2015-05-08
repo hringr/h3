@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using hringr.Models;
+using hringr.DAL;
 
 namespace hringr.Controllers
 {
@@ -38,7 +39,9 @@ namespace hringr.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
-            return View();
+            Post post = new Post();
+            post.date = DateTime.Now;
+            return View(post);
         }
 
         // POST: Posts/Create
