@@ -163,6 +163,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\FollowsController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -266,6 +267,11 @@
     <Content Include="Views\Follows\Details.cshtml" />
     <Content Include="Views\Follows\Edit.cshtml" />
     <Content Include="Views\Follows\Index.cshtml" />
+    <Content Include="Views\Group\Create.cshtml" />
+    <Content Include="Views\Group\Delete.cshtml" />
+    <Content Include="Views\Group\Details.cshtml" />
+    <Content Include="Views\Group\Edit.cshtml" />
+    <Content Include="Views\Group\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
