@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace hringr.Models
 {
@@ -21,8 +22,12 @@ namespace hringr.Models
         [Required(ErrorMessage = "Title required")]
         public string title { get; set; }
 
+        [Required(ErrorMessage = "Text required")]
         public string text { get; set; }
+
+        [Required(ErrorMessage = "Link required")]
         public string link { get; set; }
+
         public int groupID { get; set; }
 
         

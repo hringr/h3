@@ -17,7 +17,7 @@ namespace hringr.Models
             return userIdentity;
         }
 
-        public string FullName { get; set; }
+        public string PersonName { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -32,12 +32,12 @@ namespace hringr.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<hringr.Models.Category> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
-        public System.Data.Entity.DbSet<hringr.Models.Post> Posts { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
-        public System.Data.Entity.DbSet<hringr.Models.Follow> Follows { get; set; }
+        public DbSet<Follow> Follows { get; set; }
 
-        public System.Data.Entity.DbSet<hringr.Models.Group> Groups { get; set; }
+        public DbSet<Group> Groups { get; set; }
     }
 }

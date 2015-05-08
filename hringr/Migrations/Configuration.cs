@@ -10,6 +10,7 @@ namespace hringr.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "hringr.Models.ApplicationDbContext";
         }
 

@@ -14,7 +14,7 @@ namespace hringr.Repository
         public IEnumerable<Post> GetAllPosts()
         {
             var result = (from n in m_db.Posts
-                orderby n.date descending
+                orderby n.date descending 
                 select n).Take(10);
             return result;
         }
