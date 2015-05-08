@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using hringr.DAL;
 using hringr.Models;
 
 namespace hringr.Repository
 {
     public class PostRepository
     {
-        HringrContext m_db = new HringrContext();
+        ApplicationDbContext m_db = new ApplicationDbContext();
 
         public IEnumerable<Post> GetAllPosts()
         {

@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -18,6 +19,8 @@ namespace hringr.Models
         }
 
         public string PersonName { get; set; }
+
+        public virtual ICollection<Post> Posts { get; set; } 
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -39,5 +42,13 @@ namespace hringr.Models
         public DbSet<Follow> Follows { get; set; }
 
         public DbSet<Group> Groups { get; set; }
+
+        public DbSet<Like> Likes { get; set; }
+
+        public DbSet<Dislike> Dislikes { get; set; }
+       
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<GroupMember> GroupMembers { get; set; }
     }
 }

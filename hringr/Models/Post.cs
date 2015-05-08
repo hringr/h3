@@ -15,7 +15,7 @@ namespace hringr.Models
         }
 
         public int ID { get; set; }
-        public int userID { get; set; }
+       
         public int categoryID { get; set; }
         public DateTime date { get; set; }
 
@@ -30,6 +30,6 @@ namespace hringr.Models
 
         public int groupID { get; set; }
 
-        
+        public virtual ApplicationUser user { get; set; }
     }
 }
