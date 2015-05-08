@@ -37,5 +37,7 @@ namespace hringr.Models
         public System.Data.Entity.DbSet<hringr.Models.Post> Posts { get; set; }
 
         public System.Data.Entity.DbSet<hringr.Models.Follow> Follows { get; set; }
+
+        public System.Data.Entity.DbSet<hringr.Models.Group> Groups { get; set; }
     }
 }
