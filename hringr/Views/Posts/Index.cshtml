@@ -1,26 +1,29 @@
 ﻿@model IEnumerable<hringr.Models.Post>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Posts</h2>
-<!--
-<p>
-    <a href="/Posts/Create">Create New</a>
-</p>
--->
-
-<div>
-    @foreach (var item in Model)
-    {
-        <div class="well">
-            <h3>
-                @Html.DisplayFor(modelItem => item.title) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
-            </h3>
-            <p>
-                @Html.DisplayFor(modelItem => item.text)
-            </p>
-        </div>
+    @{
+        ViewBag.Title = "Index";
     }
-</div>
+
+    <h2>Posts</h2>
+
+    <div>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        @foreach (var item in Model)
+        {
+            <div class="well">
+                <h3>
+                    @Html.DisplayFor(modelItem => item.title) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
+                </h3>
+                <p>
+                    @Html.DisplayFor(modelItem => item.text)
+                </p>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </p>
+            </div>
+        }
+    </div>
