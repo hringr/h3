@@ -30,6 +30,8 @@ namespace hringr.Models
 
         public int groupID { get; set; }
 
+        public Category category { get; set; }
+
         public virtual ApplicationUser user { get; set; }
     }
 }
