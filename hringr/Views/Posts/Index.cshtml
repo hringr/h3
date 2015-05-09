@@ -20,9 +20,13 @@
                     @Html.DisplayFor(modelItem => item.text)
                 </p>
                 <p>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    <button class="pull-right" type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-thumbs-up" /></button>
+
+                    <a class="comment" href="../Comments/Create">Comment</a> |
+                    @Html.ActionLink("Edit", "Edit", new {id = item.ID}) |
+                    @Html.ActionLink("Details", "Details", new {id = item.ID}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = item.ID})
                 </p>
             </div>
         }
