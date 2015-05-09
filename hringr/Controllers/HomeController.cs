@@ -1,16 +1,12 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using hringr.Models;
+using hringr.Repository;
 
 namespace hringr.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult test()
-        {
-            return View();
-        }
-
         public ActionResult Index()
         {
             return View();

@@ -5,27 +5,43 @@
 <div class="jumbotron">
     <h1>HRIN.GR</h1>
     <p class="lead">Hrin.gr is a social network where you can post links that you find interesting.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    <p>
+        <section id="loginForm">
+            <form action="/Account/Login" class="form-horizontal" method="post" role="form" novalidate="novalidate">
+                <input name="__RequestVerificationToken" type="hidden" value="8eSWLNR7GLt4D05RW4KO7yfFIS-7E3hqYzY-HnRat5TP6w7lMOZmbOWMXeKnF-hBi4SRAqNEUX12T5lNrJMtTR6a4VlwaVXiEbiPCw_qJsw1"> <h4>Use a local account to log in.</h4>
+                <hr>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="UserName">User Name</label>
+                    <div class="col-md-10">
+                        <input class="form-control valid" data-val="true" data-val-required="The User Name field is required." id="UserName" name="UserName" type="text" value="">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="Password">Password</label>
+                    <div class="col-md-10">
+                        <input class="form-control" data-val="true" data-val-required="The Password field is required." id="Password" name="Password" type="password">
+                        <span class="field-validation-valid text-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <input data-val="true" data-val-required="The Remember me? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true"><input name="RememberMe" type="hidden" value="false">
+                            <small><label for="RememberMe">Remember me?</label></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-default">
+                    </div>
+                </div>
+                <p>
+                    <a href="/Account/Register">Register as a new user</a>
+                </p>
+            </form>
+    </section>
+    </p>
+    <p><a href="/Account/Register" id="registerLink" class="btn btn-primary btn-lg">Register &raquo;</a></p>
 </div>

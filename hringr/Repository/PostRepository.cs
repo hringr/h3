@@ -6,9 +6,9 @@ namespace hringr.Repository
 {
     public class PostRepository
     {
-        ApplicationDbContext m_db = new ApplicationDbContext();
+        static ApplicationDbContext m_db = new ApplicationDbContext();
 
-        public IEnumerable<Post> GetAllPosts()
+        public static IEnumerable<Post> GetAllPosts()
         {
             var result = (from n in m_db.Posts
                 orderby n.date descending 
