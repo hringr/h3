@@ -34,11 +34,13 @@ namespace hringr.Controllers
             }
             return View(comment);
         }
-
+        
         // GET: Comments/Create
         public ActionResult Create()
         {
-            return View();
+            Comment comment = new Comment();
+            comment.date = DateTime.Now;
+            return View(comment);
         }
 
         // POST: Comments/Create

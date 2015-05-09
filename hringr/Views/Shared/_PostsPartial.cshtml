@@ -1,0 +1,42 @@
+﻿@using hringr.Models
+@model IEnumerable<hringr.Models.Post>
+
+@functions {
+    private object _Page_Views_Posts_Index_cshtml;
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Posts</h2>
+
+<div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @foreach (var item in Model)
+    {
+        <div class="well">
+            <h3>
+                @Html.DisplayFor(modelItem => item.title) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
+            </h3>
+            <p>
+                @Html.DisplayFor(modelItem => item.text)
+            </p>
+            <p>
+                <button class="pull-right btn btn-primary btn-xs" type="button">
+                    <span class="glyphicon glyphicon-thumbs-down"></span> Dislike
+                </button>
+                <button class="pull-right btn btn-primary btn-xs" type="button">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                </button>
+
+                <a class="comment" href="../Comments/Create">Comment</a> |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </p>
+        </div>
+    }
+</div>

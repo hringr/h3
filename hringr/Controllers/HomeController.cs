@@ -6,6 +6,11 @@ namespace hringr.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult test()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             return View();
