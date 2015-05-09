@@ -20,12 +20,10 @@
                     @Html.DisplayFor(modelItem => item.text)
                 </p>
                 <p>
-                    <button  class="pull-right btn btn-primary btn-xs" type="button">
-                        <span class="glyphicon glyphicon-thumbs-down"></span> Dislike
-                    </button>
-                    <button class="pull-right btn btn-primary btn-xs" type="button">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                    </button>
+                    <a class="like-comment pull-right btn btn-primary btn-xs" data-template-bind='{"attribute": "id", "value": "ID"}' onclick='AddDislike(id); return false' href="#"><span class="glyphicon glyphicon-thumbs-down"> </span> Dislike</a>
+
+                    <a class="like-comment pull-right btn btn-primary btn-xs space" data-template-bind='{"attribute": "id", "value": "ID"}' onclick='AddLike(id); return false' href="#"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+
 
                     @Html.ActionLink("Comment", "Create","Comments", new { id = item.ID }, null)|
                     @Html.ActionLink("Edit", "Edit", new {id = item.ID}) |
