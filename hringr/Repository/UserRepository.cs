@@ -1,11 +1,9 @@
-﻿using System;
+﻿using hringr.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using hringr.Controllers;
 
 namespace hringr.Repository
 {
-    public class UserRepository
-    {
-    }
+   
 }
