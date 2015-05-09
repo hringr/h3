@@ -27,7 +27,7 @@
                         <span class="glyphicon glyphicon-thumbs-up"></span> Like
                     </button>
 
-                    <a class="comment" href="../Comments/Create">Comment</a> |
+                    @Html.ActionLink("Comment", "Create","Comments", new { id = item.ID }, null)|
                     @Html.ActionLink("Edit", "Edit", new {id = item.ID}) |
                     @Html.ActionLink("Details", "Details", new {id = item.ID}) |
                     @Html.ActionLink("Delete", "Delete", new {id = item.ID})
