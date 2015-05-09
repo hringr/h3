@@ -49,7 +49,7 @@ namespace hringr.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "UserName")]
+        [Display(Name = "User Name")]
         //[EmailAddress]
         public string UserName { get; set; }
 
