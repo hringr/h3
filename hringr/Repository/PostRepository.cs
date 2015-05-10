@@ -38,7 +38,6 @@ namespace hringr.Repository
                 t.title = n.title;
                 t.link = n.link;
                 t.text = n.text;
-                t.category = n.category;
                 m_db.SaveChanges();
             }
         }

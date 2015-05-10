@@ -14,7 +14,7 @@ namespace hringr.Controllers
         // GET: Posts
         public ActionResult Index()
         {
-            return View(db.Posts.ToList().OrderByDescending(x => x.date).Take(3));
+            return View(db.Posts.ToList());
         }
 
         // GET: Posts/Details/5
@@ -45,7 +45,7 @@ namespace hringr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,userID,categoryID,date,title,text,link,groupID")] Post post)
+        public ActionResult Create([Bind(Include = "ID,userID,categoryID,date,title,text,link,groupID,category")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace hringr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,userID,categoryID,date,title,text,link,groupID")] Post post)
+        public ActionResult Edit([Bind(Include = "ID,userID,category,date,title,text,link,groupID,category")] Post post)
         {
             if (ModelState.IsValid)
             {

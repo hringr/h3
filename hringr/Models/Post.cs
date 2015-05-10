@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
@@ -13,12 +12,6 @@ namespace hringr.Models
         public Post()
         {
             date = DateTime.Now;
-            categories = new List<SelectListItem>();
-            categories.Add(new SelectListItem { Text = "-Select-", Value = "", Selected = true });
-            categories.Add(new SelectListItem { Text = "News", Value = "News" });
-            categories.Add(new SelectListItem { Text = "Politics", Value = "Politics" });
-            categories.Add(new SelectListItem { Text = "Education", Value = "Education" });
-            categories.Add(new SelectListItem { Text = "Sports", Value = "Sports" });
         }
 
         public int ID { get; set; }
@@ -36,9 +29,7 @@ namespace hringr.Models
         public string link { get; set; }
 
         public int groupID { get; set; }
-
-        public string category { get; set; }
-        public List<SelectListItem> categories { get; set; }
+        
         public virtual ApplicationUser user { get; set; }
     }
 }
