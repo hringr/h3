@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using hringr.Models;
-using hringr.Repository;
+﻿using System.Web.Mvc;
 
 namespace hringr.Controllers
 {
