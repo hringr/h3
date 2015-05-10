@@ -14,7 +14,7 @@ namespace hringr.Controllers
         // GET: Posts
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            return View(db.Posts.ToList().OrderByDescending(x => x.date).Take(3));
         }
 
         // GET: Posts/Details/5
