@@ -10,11 +10,11 @@
         </p>
 
         <p>Hrin.gr is a social network where you can post links that you find interesting.</p>
-
+    
     <section id="loginForm">
         <form action="/Account/Login" class="form-horizontal" method="post" role="form">
             <input name="__RequestVerificationToken" type="hidden" value="Y87E6eKyF_AuRfa5ySzre4qiOVAytL6RIxnQSDLIlo7Y7eRTDkDk6b2GfhR3BM_uDUj7WWRvuFM-kMdYCFkkc5dPFfVz9pj0gOammtHgbiurMLc1yCRR8lK73WWe2wpl_2b2iQAK9gTNoaiGtJ6rUQ2"/>
-            <h4>Use a local account to log in.</h4>
+
             <div class="form-group">
                 <label class="col-md-2 control-label" for="UserName">User Name</label>
                 <div class="col-md-10">
@@ -27,22 +27,20 @@
                 <div class="col-md-10">
                     <input class="form-control" data-val="true" data-val-required="The Password field is required." id="Password" name="Password" type="password"/>
                     <span class="field-validation-valid text-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
                     <div class="checkbox">
-                        <input data-val="true" data-val-required="The Remember me? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true"/><input name="RememberMe" type="hidden" value="false"/>
+                        <input data-val="true" data-val-required="The Remember me? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" />
                         <label for="RememberMe">Remember me?</label>
                     </div>
                 </div>
             </div>
+           
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Log in" class="btn btn-default"/>
+                    <input type="submit" value="Log in" />
                 </div>
             </div>
         </form>
     </section>
     </div>
+      
 </body>
