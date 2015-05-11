@@ -24,9 +24,6 @@
                     <li>@Html.ActionLink("Posts", "Index", "Posts")</li>
                     <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
                     <li>@Html.ActionLink("Follows", "Index", "Follows")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -35,6 +32,10 @@
     <div class="container body-content">
         @RenderBody()
         <footer>
+            <ul class="list-inline">
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
             <p>&copy; @DateTime.Now.Year - HRIN.GR</p>
         </footer>
     </div>
