@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.UI.WebControls;
 
 namespace hringr
 {
@@ -10,10 +11,24 @@ namespace hringr
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "User",
+                url: "{controller}/{action}/{user}",
+                defaults: new { controller = "User", action = "Details" }
+            );
+
+            routes.MapRoute(
+                name: "Search",
+                url: "{controller}/{action}/{q}",
+                defaults: new { controller = "Search", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            
         }
     }
 }
