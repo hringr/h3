@@ -68,7 +68,7 @@ namespace hringr.Models
         public string FullName { get; set; }
 
         [Required]
-        [RegularExpression("^[0-9a-zA-Z]+$")]
+        [RegularExpression("^[0-9a-zA-Z]+$", ErrorMessage = "The User name can only contain numbers or letters.")]
         [Display(Name = "User name")]
         public string UserName { get; set; }
 
