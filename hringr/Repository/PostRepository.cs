@@ -1,11 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using hringr.Models;
+using System;
 
 namespace hringr.Repository
 {
     public class PostRepository
     {
+        private static PostRepository _instance;
+
+        public static PostRepository Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new PostRepository();
+                return _instance;
+            }
+        }
+
         static ApplicationDbContext m_db = new ApplicationDbContext();
 
         public static IEnumerable<Post> GetAllPosts()
@@ -68,10 +81,10 @@ namespace hringr.Repository
         {
             int likeID = 1;
 
-            /* if (m_db.Count() > 0)
+             if (m_db.Likes.Count() > 0)
              {
-                 likeID = m_db.Max(x => x.ID) + 1;
-             }*/
+                 likeID = m_db.Likes.Max(x => x.ID) + 1;
+             }
 
             lk.ID = likeID;
             m_db.Likes.Add(lk);
@@ -83,10 +96,10 @@ namespace hringr.Repository
         {
             int dislikeID = 1;
 
-            /* if (m_db.Count() > 0)
+             if (m_db.Dislikes.Count() > 0)
              {
-                 likeID = m_db.Max(x => x.ID) + 1;
-             }*/
+                 dislikeID = m_db.Dislikes.Max(x => x.ID) + 1;
+             }
 
             lk.ID = dislikeID;
             m_db.Dislikes.Add(lk);
@@ -94,14 +107,14 @@ namespace hringr.Repository
 
         }
 
-         /*public bool userLikedBefore(int id, string username)
+         public bool userLikedBefore(int id, string username)
          {
              foreach (var like in m_db.Likes)
              {
-                 if (like.postID == id && like.user == username)
+                 if (like.postID == id && like.user.UserName == username)
                      return true;
              }
              return false;
-         }*/
+         }
     }
 }
