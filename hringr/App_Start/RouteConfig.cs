@@ -12,7 +12,7 @@ namespace hringr
 
             routes.MapRoute(
                 name: "User",
-                url: "{controller}/{action}/{user}",
+                url: "{controller}/{action}/{u}",
                 defaults: new { controller = "User", action = "Details" }
             );
 

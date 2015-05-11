@@ -1,7 +1,16 @@
-﻿
+﻿@model IEnumerable<hringr.Models.ApplicationUser>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Users";
 }
 
-<h2>Index</h2>
+<h2>Users</h2>
+    
+    @foreach (var user in Model)
+    {
+        <div class="well well-sm">
+                <h3>
+                    @Html.ActionLink(user.UserName, "Details", "User", new { user = user.UserName }, null)
+                </h3>
+            </div>
+    }
 

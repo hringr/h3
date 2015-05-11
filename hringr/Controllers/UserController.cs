@@ -14,14 +14,17 @@ namespace hringr.Controllers
         // GET: /User/
         public ActionResult Index()
         {
-            return View();
+            var users = (from x in db.Users
+                         orderby x.UserName ascending 
+                         select x);
+            return View(users);
         }
-        public ActionResult Details(string user)
+        public ActionResult Details(string u)
         {
-            var u = (from x in db.Users
-                     where x.UserName.Equals(user)
-                     select x).SingleOrDefault();
-            return View(u);
+            var user = (from x in db.Users
+                        where x.UserName.Equals(u)
+                        select x).SingleOrDefault();
+            return View(user);
         }
 	}
 }
