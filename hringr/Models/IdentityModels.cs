@@ -18,7 +18,7 @@ namespace hringr.Models
             return userIdentity;
         }
 
-        public string PersonName { get; set; }
+        
 
         public virtual ICollection<Post> Posts { get; set; } 
     }
