@@ -12,12 +12,14 @@ namespace hringr.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Posts
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Posts.ToList());
         }
 
         // GET: Posts/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,6 +35,7 @@ namespace hringr.Controllers
         }
 
         // GET: Posts/Create
+        [Authorize]
         public ActionResult Create()
         {
             Post post = new Post();
@@ -58,6 +61,7 @@ namespace hringr.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,6 +93,7 @@ namespace hringr.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
