@@ -12,12 +12,14 @@ namespace hringr.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Comments
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Comments.ToList());
         }
 
         // GET: Comments/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,6 +35,7 @@ namespace hringr.Controllers
         }
         
         // GET: Comments/Create
+        [Authorize]
         public ActionResult Create()
         {
             Comment comment = new Comment();
@@ -58,6 +61,7 @@ namespace hringr.Controllers
         }
 
         // GET: Comments/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,6 +93,7 @@ namespace hringr.Controllers
         }
 
         // GET: Comments/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
