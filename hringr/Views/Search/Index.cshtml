@@ -5,8 +5,21 @@
 
 <h2>Search</h2>
 
-@foreach (var user in Model)
+@using (Html.BeginForm("Index", "Search", FormMethod.Get))
 {
-    <p>@user.UserName</p>
+    <p>
+        Find by name: @Html.TextBox("q")
+        <input type="submit" value="Search"/>
+    </p>
+    
+    <div>
+        @foreach (var item in Model)
+        {
+            <div class="well well-sm">
+                <h3>
+                    @Html.ActionLink(item.UserName, "Index", "Manage")
+                </h3>
+            </div>
+        }
+    </div>
 }
-
