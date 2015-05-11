@@ -11,12 +11,14 @@ namespace hringr.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Follows
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Follows.ToList());
         }
 
         // GET: Follows/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -32,6 +34,7 @@ namespace hringr.Controllers
         }
 
         // GET: Follows/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -55,6 +58,7 @@ namespace hringr.Controllers
         }
 
         // GET: Follows/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -86,6 +90,7 @@ namespace hringr.Controllers
         }
 
         // GET: Follows/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
