@@ -17,7 +17,7 @@
         {
             <div class="well well-sm">
                 <h3>
-                    @Html.ActionLink(item.UserName, "Index", "Manage")
+                    @Html.ActionLink(item.UserName, "Details", "User", new { user = item.UserName }, null)
                 </h3>
             </div>
         }
