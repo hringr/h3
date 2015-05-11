@@ -11,6 +11,7 @@ namespace hringr.Controllers
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private PostRepository postRepo = new PostRepository();
 
         // GET: Posts
         [Authorize]
@@ -39,9 +40,18 @@ namespace hringr.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            Post post = new Post();
-            post.date = DateTime.Now;
-            return View(post);
+            // Controller myndi taka við postRepo.GetCategories() sem væru af taginu Category
+            // Og fara svo í gegnum hvern og einn og búa til lista af SelectListItem
+
+            //IEnumerable<Category> categories = postRepo.GetCategories();
+
+
+            CreatePostViewModel viewModel = new CreatePostViewModel();
+            viewModel.categories = postRepo.GetCategories();
+            viewModel.post = new Post();
+
+            return View(viewModel);
+        
         }
 
         // POST: Posts/Create
