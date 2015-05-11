@@ -23,7 +23,10 @@ textarea {
     max-width: 280px;
 }
 
-.space
-{
+.space {
     margin-right:8px;
+}
+
+.login-body {
+    background-image: url(/img/mynd6.jpg);
 }
