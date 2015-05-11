@@ -25,7 +25,9 @@ namespace hringr.Models
         public string link { get; set; }
 
         public int groupID { get; set; }
-        
+
+        public virtual Category category { get; set; }
+
         public virtual ApplicationUser user { get; set; }
     }
 }

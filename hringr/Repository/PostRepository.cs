@@ -2,6 +2,7 @@
 using System.Linq;
 using hringr.Models;
 using System;
+using System.Web.Mvc;
 
 namespace hringr.Repository
 {
@@ -115,6 +116,14 @@ namespace hringr.Repository
                      return true;
              }
              return false;
+         }
+         public IEnumerable<SelectListItem> GetCategories()
+         {
+             return m_db.Categories.Select(c => new SelectListItem
+             {
+                 Text = c.name,
+                 Value = c.ID.ToString()
+             });
          }
     }
 }
