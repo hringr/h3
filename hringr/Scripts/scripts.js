@@ -50,7 +50,7 @@ function GetAllComments() {
 }
 
 function AddLike(x) {
-    $.post("Home/AddLike", { commentid: x }, function (data) {
+    $.post("Posts/AddLike", { commentid: x }, function (data) {
         $("comment").remove();
         GetAllComments(x);
     });
@@ -61,7 +61,7 @@ function GetLikes(id) {
         {
             type: "GET",
             contentType: "application/json; charset=utf-8",
-            url: "Home/GetLikes",
+            url: "Posts/GetLikes",
             data: { commentId: id },
             datatype: "json",
             success: function (likes) {
