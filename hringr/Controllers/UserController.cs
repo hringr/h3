@@ -4,27 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using hringr.Models;
+using hringr.Repository;
 
 namespace hringr.Controllers
 {
     public class UserController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly UserRepository userRepo = new UserRepository();
+        private readonly PostRepository postRepo = new PostRepository();
         //
         // GET: /User/
         public ActionResult Index()
         {
-            var users = (from x in db.Users
-                         orderby x.UserName ascending 
-                         select x);
+            var users = userRepo.GetAllUsers();
             return View(users);
         }
         public ActionResult Details(string u)
         {
-            var user = (from x in db.Users
-                        where x.UserName.Equals(u)
-                        select x).SingleOrDefault();
-            return View(user);
+            var user = userRepo.GetUserByUserName(u);
+            var posts = postRepo.GetPostByUserId(user.Id);
+            UserViewModels viewModel = new UserViewModels();
+            viewModel.user = user;
+            viewModel.posts = posts;
+            return View(viewModel);
         }
 	}
 }

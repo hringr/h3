@@ -33,8 +33,16 @@ namespace hringr.Repository
         public Post GetPostById(int id)
         {
             var result = (from n in m_db.Posts
-                where n.ID == id
-                select n).SingleOrDefault();
+                          where n.ID == id
+                          select n).SingleOrDefault();
+            return result;
+        }
+
+        public IEnumerable<Post> GetPostByUserId(string id)
+        {
+            var result = (from x in m_db.Posts
+                          where x.user.Id.Equals(id)
+                          select x);
             return result;
         }
 

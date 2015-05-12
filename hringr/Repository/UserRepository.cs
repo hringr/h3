@@ -11,17 +11,28 @@ namespace hringr.Repository
         {
             get
             {
-                if (_instance == null)
+                if(_instance == null)
                     _instance = new UserRepository();
                 return _instance;
             }
         }
 
-        static ApplicationDbContext m_db = new ApplicationDbContext();
+        static readonly ApplicationDbContext m_db = new ApplicationDbContext();
 
-    //    public static IEnumerable<ApplicationUser> GetAllUsers()
-    //    {
-            
-    //    }
+        public IEnumerable<ApplicationUser> GetAllUsers()
+        {
+            var result = (from x in m_db.Users
+                          orderby x.UserName ascending
+                          select x);
+            return result;
+        }
+
+        public ApplicationUser GetUserByUserName(string usr)
+        {
+            var result = (from x in m_db.Users
+                          where x.UserName.Equals(usr)
+                          select x).SingleOrDefault();
+            return result;
+        }
     }
 }
