@@ -22,15 +22,15 @@ namespace hringr.Repository
 
         static ApplicationDbContext m_db = new ApplicationDbContext();
 
-        public static IEnumerable<Post> GetAllPosts()
+        public IEnumerable<Post> GetAllPosts()
         {
             var result = (from n in m_db.Posts
                 orderby n.date descending 
-                select n).Take(10);
+                select n).ToList().Take(10);
             return result;
         }
 
-        public Post GetPostById(int id)
+        public Post GetPostById(int? id)
         {
             var result = (from n in m_db.Posts
                           where n.ID == id
@@ -133,5 +133,10 @@ namespace hringr.Repository
                  Value = c.ID.ToString()
              });
          }
+
+        public void Dispose()
+        {
+            m_db.Dispose();
+        }
     }
 }

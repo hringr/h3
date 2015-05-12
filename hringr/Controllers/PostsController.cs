@@ -10,14 +10,15 @@ namespace hringr.Controllers
 {
     public class PostsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
         private PostRepository postRepo = new PostRepository();
 
         // GET: Posts
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            var posts = postRepo.GetAllPosts();
+            return View(posts);
         }
 
         // GET: Posts/Details/5
@@ -28,7 +29,7 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            var post = postRepo.GetPostById(id);
             if (post == null)
             {
                 return HttpNotFound();
@@ -63,12 +64,11 @@ namespace hringr.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Posts.Add(post);
-                db.SaveChanges();
+                postRepo.AddPost(post);
                 return RedirectToAction("Index");
             }
-
-            return View(post);
+            
+            return View();
         }
 
         // GET: Posts/Edit/5
@@ -79,7 +79,7 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            var post = postRepo.GetPostById(id);
             if (post == null)
             {
                 return HttpNotFound();
@@ -96,8 +96,9 @@ namespace hringr.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(post).State = EntityState.Modified;
-                db.SaveChanges();
+                /*db.Entry(post).State = EntityState.Modified;
+                db.SaveChanges();*/
+                postRepo.UpdatePost(post);
                 return RedirectToAction("Index");
             }
             return View(post);
@@ -111,7 +112,7 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            var post = postRepo.GetPostById(id);
             if (post == null)
             {
                 return HttpNotFound();
@@ -124,9 +125,11 @@ namespace hringr.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Post post = db.Posts.Find(id);
+            /*Post post = db.Posts.Find(id);
             db.Posts.Remove(post);
-            db.SaveChanges();
+            db.SaveChanges();*/
+            var post = postRepo.GetPostById(id);
+            postRepo.DeletePost(post);
             return RedirectToAction("Index");
         }
 
@@ -134,7 +137,7 @@ namespace hringr.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+               postRepo.Dispose();
             }
             base.Dispose(disposing);
         }
