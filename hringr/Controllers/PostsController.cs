@@ -63,6 +63,7 @@ namespace hringr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,categoryID,userID,date,title,text,link,groupID")] Post post)
         {
             if (ModelState.IsValid)
             {
