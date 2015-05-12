@@ -27,7 +27,7 @@
             @Html.LabelFor(model => model.post.category, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(
-                    model => Model.post.category,
+                    model => Model.post.category.ID,
                     Model.categories
                 )
 
