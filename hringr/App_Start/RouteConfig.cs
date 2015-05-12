@@ -12,13 +12,13 @@ namespace hringr
 
             routes.MapRoute(
                 name: "User",
-                url: "{controller}/{u}",
+                url: "{controller}/{action}/{u}",
                 defaults: new { controller = "User", action = "Details" }
             );
 
             routes.MapRoute(
                 name: "Search",
-                url: "{controller}/{q}",
+                url: "{controller}/{action}/{q}",
                 defaults: new { controller = "Search", action = "Index" }
             );
 
