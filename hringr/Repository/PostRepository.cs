@@ -42,7 +42,7 @@ namespace hringr.Repository
         {
             var result = (from x in m_db.Posts
                           where x.user.Id.Equals(id)
-                          select x);
+                          select x).OrderByDescending(x => x.date).ToList();
             return result;
         }
 
