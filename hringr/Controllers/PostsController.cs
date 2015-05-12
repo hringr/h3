@@ -137,7 +137,7 @@ namespace hringr.Controllers
         {
             if (disposing)
             {
-                //db.Dispose();
+               postRepo.Dispose();
             }
             base.Dispose(disposing);
         }

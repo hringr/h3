@@ -133,5 +133,10 @@ namespace hringr.Repository
                  Value = c.ID.ToString()
              });
          }
+
+        public void Dispose()
+        {
+            m_db.Dispose();
+        }
     }
 }
