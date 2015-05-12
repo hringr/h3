@@ -131,12 +131,15 @@ namespace hringr.Repository
              {
                  Text = c.name,
                  Value = c.ID.ToString()
-             });
+             }).ToList();
          }
 
-        public void Dispose()
+        public ApplicationUser GetCurrentUser(string id)
         {
-            m_db.Dispose();
+            var result = (from x in m_db.Users
+                          where x.Id.Equals(id)
+                          select x).FirstOrDefault();
+            return result;
         }
     }
 }

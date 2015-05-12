@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Data.Entity;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Security;
 using hringr.Models;
 using hringr.Repository;
+using Microsoft.AspNet.Identity;
 
 namespace hringr.Controllers
 {
     public class PostsController : Controller
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext m_db = new ApplicationDbContext();
         private PostRepository postRepo = new PostRepository();
 
         // GET: Posts
@@ -60,10 +63,13 @@ namespace hringr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,userID,categoryID,date,title,text,link,groupID,category")] Post post)
+        public ActionResult Create([Bind(Include = "ID,userID,date,title,text,link,groupID,category")] Post post)
         {
             if (ModelState.IsValid)
             {
+                string currentUserId = User.Identity.GetUserId();
+                ApplicationUser currentUser = postRepo.GetCurrentUser(currentUserId);
+                post.user = currentUser;
                 postRepo.AddPost(post);
                 return RedirectToAction("Index");
             }
@@ -137,7 +143,7 @@ namespace hringr.Controllers
         {
             if (disposing)
             {
-               postRepo.Dispose();
+                m_db.Dispose();
             }
             base.Dispose(disposing);
         }

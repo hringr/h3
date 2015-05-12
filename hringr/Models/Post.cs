@@ -12,7 +12,7 @@ namespace hringr.Models
 
         public int ID { get; set; }
        
-        public int categoryID { get; set; }
+        //public int categoryID { get; set; }
         public DateTime date { get; set; }
 
         [Required(ErrorMessage = "Title required")]
