@@ -49,9 +49,8 @@ namespace hringr.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "User Name")]
-        //[EmailAddress]
-        public string UserName { get; set; }
+        [Display(Name = "User Name or email")]
+        public string User { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

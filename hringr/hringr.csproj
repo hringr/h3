@@ -192,6 +192,7 @@
     <Compile Include="Repository\GroupRepository.cs" />
     <Compile Include="Repository\PostRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Services\IdentityService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
