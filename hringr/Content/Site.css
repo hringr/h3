@@ -35,7 +35,21 @@ textarea {
     background-image: url(/img/mynd2.jpg)
 }
 
-.space-up
+.space-up {
+    margin-top: 10px;
+}
+
+.bold-text
 {
-    margin-top:10px;
+    font-weight: bold;
+}
+
+.space-left
+{
+    margin-left:83px;
+}
+
+.space2
+{
+    margin-left:199px;
 }
