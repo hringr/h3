@@ -22,7 +22,7 @@ namespace hringr.Repository
 
         static ApplicationDbContext m_db = new ApplicationDbContext();
 
-        public static IEnumerable<Post> GetAllPosts()
+        public IEnumerable<Post> GetAllPosts()
         {
             var result = (from n in m_db.Posts
                 orderby n.date descending 
@@ -30,7 +30,7 @@ namespace hringr.Repository
             return result;
         }
 
-        public Post GetPostById(int id)
+        public Post GetPostById(int? id)
         {
             var result = (from n in m_db.Posts
                           where n.ID == id

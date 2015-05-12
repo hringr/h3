@@ -10,14 +10,15 @@ namespace hringr.Controllers
 {
     public class PostsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
         private PostRepository postRepo = new PostRepository();
 
         // GET: Posts
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            var posts = postRepo.GetAllPosts();
+            return View(posts);
         }
 
         // GET: Posts/Details/5
@@ -28,7 +29,7 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            var post = postRepo.GetPostById(id);
             if (post == null)
             {
                 return HttpNotFound();
@@ -63,12 +64,11 @@ namespace hringr.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Posts.Add(post);
-                db.SaveChanges();
+                postRepo.AddPost(post);
                 return RedirectToAction("Index");
             }
-
-            return View(post);
+            
+            return View();
         }
 
         // GET: Posts/Edit/5
@@ -79,7 +79,7 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            var post = postRepo.GetPostById(id);
             if (post == null)
             {
                 return HttpNotFound();
