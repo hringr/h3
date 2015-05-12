@@ -26,7 +26,7 @@ namespace hringr.Repository
         {
             var result = (from n in m_db.Posts
                 orderby n.date descending 
-                select n).Take(10);
+                select n).ToList().Take(10);
             return result;
         }
 
