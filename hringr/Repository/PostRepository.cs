@@ -131,7 +131,7 @@ namespace hringr.Repository
              {
                  Text = c.name,
                  Value = c.ID.ToString()
-             }).ToList();
+             });
          }
 
         public ApplicationUser GetCurrentUser(string id)
