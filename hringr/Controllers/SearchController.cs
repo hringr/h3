@@ -12,6 +12,7 @@ namespace hringr.Controllers
         public ActionResult Index(string q)
         {
             var users = (from u in db.Users
+                         orderby (u.UserName) ascending
                          where (u.FullName.Contains(q))
                          || (u.UserName.Contains(q))
                          select u);
