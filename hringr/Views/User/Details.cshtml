@@ -5,10 +5,10 @@
     ViewBag.Title = "User Details";
 }
 
-<h2>@Model</h2>
+<h2>@Model.user.UserName</h2>
 
 <h3>Posts</h3>
-@*@foreach (var post in ViewBag.Posts)
+@foreach (var post in Model.posts)
 {
   <div class="well">
     <h3>
@@ -25,4 +25,4 @@
         <span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
     </p>
   </div>
-}*@
+}

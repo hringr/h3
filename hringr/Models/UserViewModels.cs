@@ -4,7 +4,8 @@ namespace hringr.Models
 {
     public class UserViewModels
     {
-        public IEnumerable<ApplicationUser> user { get; set; }
+        public IEnumerable<ApplicationUser> users { get; set; }
+        public ApplicationUser user { get; set; }
         public IEnumerable<Post> posts { get; set; }  
     }
 }
