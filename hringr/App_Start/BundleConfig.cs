@@ -25,6 +25,7 @@ namespace hringr
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/sticky-footer.css",
                       "~/Content/site.css"));
         }
     }
