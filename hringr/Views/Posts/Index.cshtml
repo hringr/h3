@@ -14,7 +14,7 @@
         {
             <div class="well">
                 <h3>
-                    @Html.DisplayFor(modelItem => item.title) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
+                    @Html.ActionLink(item.title, "Details", new { id = item.ID }) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
                 </h3>
                 <p>
                     @Html.DisplayFor(modelItem => item.text)
