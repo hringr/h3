@@ -63,6 +63,7 @@ namespace hringr.Models
 
     public class RegisterViewModel
     {
+        [Required]
         [Display(Name = "Full name")]
         public string FullName { get; set; }
 

@@ -18,6 +18,8 @@ namespace hringr.Models
             return userIdentity;
         }
 
+        //public string FullName { get; set; }
+
         public virtual ICollection<Post> Posts { get; set; } 
     }
 

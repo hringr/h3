@@ -191,6 +191,7 @@
     <Compile Include="Repository\FollowRepository.cs" />
     <Compile Include="Repository\GroupRepository.cs" />
     <Compile Include="Repository\PostRepository.cs" />
+    <Compile Include="Repository\SearchRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Services\IdentityService.cs" />
     <Compile Include="Services\PostService.cs" />
