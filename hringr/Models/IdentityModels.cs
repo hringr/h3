@@ -18,12 +18,31 @@ namespace hringr.Models
             return userIdentity;
         }
 
-        
-
         public virtual ICollection<Post> Posts { get; set; } 
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public interface IAppDataContext
+    {
+        IDbSet<Category> Categories { get; set; }
+
+        IDbSet<Post> Posts { get; set; }
+
+        IDbSet<Follow> Follows { get; set; }
+
+        IDbSet<Group> Groups { get; set; }
+
+        IDbSet<Like> Likes { get; set; }
+
+        IDbSet<Dislike> Dislikes { get; set; }
+
+        IDbSet<Comment> Comments { get; set; }
+
+        IDbSet<GroupMember> GroupMembers { get; set; }
+
+        int SaveChanges();
+    }
+
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IAppDataContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -35,20 +54,20 @@ namespace hringr.Models
             return new ApplicationDbContext();
         }
 
-        public DbSet<Category> Categories { get; set; }
+        public IDbSet<Category> Categories { get; set; }
 
-        public DbSet<Post> Posts { get; set; }
+        public IDbSet<Post> Posts { get; set; }
 
-        public DbSet<Follow> Follows { get; set; }
+        public IDbSet<Follow> Follows { get; set; }
 
-        public DbSet<Group> Groups { get; set; }
+        public IDbSet<Group> Groups { get; set; }
 
-        public DbSet<Like> Likes { get; set; }
+        public IDbSet<Like> Likes { get; set; }
 
-        public DbSet<Dislike> Dislikes { get; set; }
-       
-        public DbSet<Comment> Comments { get; set; }
+        public IDbSet<Dislike> Dislikes { get; set; }
 
-        public DbSet<GroupMember> GroupMembers { get; set; }
+        public IDbSet<Comment> Comments { get; set; }
+
+        public IDbSet<GroupMember> GroupMembers { get; set; }
     }
 }
