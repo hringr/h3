@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #C8C8FF;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -58,4 +59,14 @@ textarea {
 .space2
 {
     margin-left:388px;
+}
+
+.navbar 
+{
+    background-color: #000026;
+}
+
+.footer 
+{
+    background-color: #000026;    
 }
