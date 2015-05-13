@@ -96,20 +96,11 @@ namespace hringr.Repository
 
         public void AddDislike(Dislike lk)
         {
-            int dislikeID = 1;
-
-             if (m_db.Dislikes.Count() > 0)
-             {
-                 dislikeID = m_db.Dislikes.Max(x => x.ID) + 1;
-             }
-
-            lk.ID = dislikeID;
             m_db.Dislikes.Add(lk);
             m_db.SaveChanges();
-
         }
 
-         /*public bool userLikedBefore(int id, string username)
+         public bool userLikedBefore(int id, string username)
          {
              foreach (var like in m_db.Likes)
              {
@@ -117,7 +108,7 @@ namespace hringr.Repository
                      return true;
              }
              return false;
-         }*/
+         }
          public IEnumerable<SelectListItem> GetCategories()
          {
              return m_db.Categories.Select(c => new SelectListItem

@@ -50,11 +50,19 @@ function GetAllComments() {
 }*/
 
 function AddLike(x) {
-    $.post("/Posts/AddLike?postingID=" + id);
-   /* $.post("/Posts/AddLike", { postID: x }, function (data) {
+  /* $.post("/Posts/AddLike", { postID: x }, function (data) {
        // $("comment").remove();
-        GetAllPosts(x);*/
-    });
+        GetAllPosts(x);
+    });*/
+    $.post("/Posts/AddLike?postingID=" + x);
+}
+
+function AddDislike(x) {
+    /* $.post("/Posts/AddLike", { postID: x }, function (data) {
+         // $("comment").remove();
+          GetAllPosts(x);
+      });*/
+    $.post("/Posts/AddDislike?postingID=" + x);
 }
 
 function GetLikes(id) {
