@@ -29,11 +29,11 @@ textarea {
 }
 
 .login-body {
-    background-image: url(/img/mynd6.jpg);
+    background-image: url(~/img/mynd6.jpg);
 }
 
 .register-body {
-    background-image: url(/img/mynd2.jpg)
+    background-image: url(~/img/mynd2.jpg)
 }
 
 .space-up {
