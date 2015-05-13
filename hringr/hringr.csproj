@@ -205,7 +205,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="images\bird.png" />
     <Content Include="images\bird2.png" />
     <Content Include="images\mynd2.jpg" />
     <Content Include="images\mynd3.jpg" />
