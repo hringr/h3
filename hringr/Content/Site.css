@@ -40,33 +40,27 @@ textarea {
     margin-top: 10px;
 }
 
-.bold-text
-{
+.bold-text {
     font-weight: bold;
 }
 
-.space-left
-{
+.space-left {
     margin-left:83px;
 }
 
-.while-text
-{
+.while-text {
     color: white;
     font-weight: bold;
 }
 
-.space2
-{
+.space2 {
     margin-left:388px;
 }
 
-.navbar 
-{
+.navbar {
     background-color: #000026;
 }
 
-.footer 
-{
+.footer {
     background-color: #000026;    
 }
