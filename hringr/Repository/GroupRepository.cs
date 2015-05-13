@@ -3,9 +3,10 @@ using hringr.Models;
 
 namespace hringr.Repository
 {
-    public class GroupRepository
+    public class GroupRepository : Repo
     {
-        ApplicationDbContext m_db = new ApplicationDbContext();
+        private ApplicationDbContext m_db = GetDbContext();
+        //ApplicationDbContext m_db = new ApplicationDbContext();
 
         public Group GetGroupById(int id)
         {

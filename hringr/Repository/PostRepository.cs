@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace hringr.Repository
 {
-    public class PostRepository
+    public class PostRepository : Repo
     {
         private static PostRepository _instance;
 
@@ -20,7 +20,8 @@ namespace hringr.Repository
             }
         }
 
-        static ApplicationDbContext m_db = new ApplicationDbContext();
+        private ApplicationDbContext m_db = GetDbContext();
+        //static ApplicationDbContext m_db = new ApplicationDbContext();
 
         public IEnumerable<Post> GetAllPosts()
         {
@@ -42,7 +43,8 @@ namespace hringr.Repository
         {
             var result = (from x in m_db.Posts
                           where x.user.Id.Equals(id)
-                          select x).OrderByDescending(x => x.date).ToList();
+                          orderby x.date descending 
+                          select x).ToList();
             return result;
         }
 

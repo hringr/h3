@@ -4,7 +4,7 @@ using hringr.Models;
 
 namespace hringr.Repository
 {
-    public class SearchRepository
+    public class SearchRepository : Repo
     {
         private static SearchRepository _instance;
         public static SearchRepository Instance
@@ -17,7 +17,8 @@ namespace hringr.Repository
             }
         }
 
-        static readonly ApplicationDbContext m_db = new ApplicationDbContext();
+        private ApplicationDbContext m_db = GetDbContext();
+        //static readonly ApplicationDbContext m_db = new ApplicationDbContext();
 
         //public IEnumerable<ApplicationUser> SearchForUsers(string str)
         //{
