@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
-    GetAllComments();
+    GetAllPosts();
 });
 
-function AddComment() {
+/*function AddComment() {
     // alert("Hallo");
     var comment = $('#CommentText').val();
     var obj = new Object();
@@ -47,12 +47,13 @@ function GetAllComments() {
             }
         }
     })
-}
+}*/
 
 function AddLike(x) {
-    $.post("Posts/AddLike", { commentid: x }, function (data) {
-        $("comment").remove();
-        GetAllComments(x);
+    $.post("/Posts/AddLike?postingID=" + id);
+   /* $.post("/Posts/AddLike", { postID: x }, function (data) {
+       // $("comment").remove();
+        GetAllPosts(x);*/
     });
 }
 
@@ -73,11 +74,11 @@ function GetLikes(id) {
         });
 }
 
-function ConvertStringToJSDate(dt) {
+/*function ConvertStringToJSDate(dt) {
     var dtE = /^\/Date\((-?[0-9]+)\)\/$/.exec(dt);
     if (dtE) {
         var dt = new Date(parseInt(dtE[1], 10));
         return dt;
     }
     return null;
-}
+}*/
