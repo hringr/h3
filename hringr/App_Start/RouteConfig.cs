@@ -11,6 +11,12 @@ namespace hringr
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Posts",
+                url: "Posts/{action}/{id}",
+                defaults: new { controller = "Posts", action = "Details" }
+                );
+
+            routes.MapRoute(
                 name: "Follow",
                 url: "{controller}/{action}/{u}",
                 defaults: new { controller = "Follow", action = "Add" }
