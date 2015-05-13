@@ -111,7 +111,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\hringr\hringr123.csproj">
+    <ProjectReference Include="..\hringr\hringr.csproj">
       <Project>{80C746AF-5A00-4060-BF87-6B27A9D56C55}</Project>
       <Name>hringr123</Name>
     </ProjectReference>
