@@ -6,11 +6,11 @@ using System.Web.Mvc;
 
 namespace hringr.Repository
 {
-    public class PostRepository : Repo
+    public class PostRepository
     {
         private static PostRepository _instance;
 
-        public static PostRepository Instance
+        public new static PostRepository Instance
         {
             get
             {
@@ -20,8 +20,7 @@ namespace hringr.Repository
             }
         }
 
-        private ApplicationDbContext m_db = GetDbContext();
-        //static ApplicationDbContext m_db = new ApplicationDbContext();
+        static ApplicationDbContext m_db = new ApplicationDbContext();
 
         public IEnumerable<Post> GetAllPosts()
         {

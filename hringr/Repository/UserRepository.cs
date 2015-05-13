@@ -5,11 +5,11 @@ using hringr.Models;
 
 namespace hringr.Repository
 {
-    public class UserRepository : Repo
+    public class UserRepository
     {
         private static UserRepository _instance;
 
-        public static UserRepository Instance
+        public new static UserRepository Instance
         {
             get
             {
@@ -19,8 +19,7 @@ namespace hringr.Repository
             }
         }
 
-        private ApplicationDbContext m_db = GetDbContext();
-        //private static readonly ApplicationDbContext m_db = new ApplicationDbContext();
+        private static readonly ApplicationDbContext m_db = new ApplicationDbContext();
 
         public IEnumerable<ApplicationUser> GetAllUsers()
         {

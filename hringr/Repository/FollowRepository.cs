@@ -4,11 +4,11 @@ using hringr.Models;
 
 namespace hringr.Repository
 {
-    public class FollowRepository : Repo
+    public class FollowRepository
     {
         private static PostRepository _instance;
 
-        public static PostRepository Instance
+        public new static PostRepository Instance
         {
             get
             {
@@ -18,9 +18,8 @@ namespace hringr.Repository
             }
         }
 
-        private ApplicationDbContext m_db = GetDbContext();
 
-        //static ApplicationDbContext m_db = new ApplicationDbContext();
+        static ApplicationDbContext m_db = new ApplicationDbContext();
 
         public void AddFollow(Follow model)
         {
