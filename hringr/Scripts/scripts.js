@@ -1,6 +1,6 @@
-﻿$(document).ready(function () {
+﻿/*$(document).ready(function () {
     GetAllPosts();
-});
+});*/
 
 /*function AddComment() {
     // alert("Hallo");
@@ -49,19 +49,13 @@ function GetAllComments() {
     })
 }*/
 
-function AddLike(x) {
-  /* $.post("/Posts/AddLike", { postID: x }, function (data) {
-       // $("comment").remove();
-        GetAllPosts(x);
-    });*/
+function AddLike(x)
+{
     $.post("/Posts/AddLike?postingID=" + x);
 }
 
-function AddDislike(x) {
-    /* $.post("/Posts/AddLike", { postID: x }, function (data) {
-         // $("comment").remove();
-          GetAllPosts(x);
-      });*/
+function AddDislike(x)
+{
     $.post("/Posts/AddDislike?postingID=" + x);
 }
 
@@ -81,12 +75,3 @@ function GetLikes(id) {
             }
         });
 }
-
-/*function ConvertStringToJSDate(dt) {
-    var dtE = /^\/Date\((-?[0-9]+)\)\/$/.exec(dt);
-    if (dtE) {
-        var dt = new Date(parseInt(dtE[1], 10));
-        return dt;
-    }
-    return null;
-}*/
