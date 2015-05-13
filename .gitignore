@@ -198,3 +198,4 @@ FakesAssemblies/
 # Ignore dot db files
 */**/*.db
 
+hringr/hringr123.csproj
