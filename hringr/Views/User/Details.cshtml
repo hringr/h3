@@ -1,4 +1,4 @@
-﻿
+﻿@using System.Activities.Expressions
 @model hringr.Models.UserViewModels
 
 @{
@@ -6,6 +6,17 @@
 }
 
 <h2>@Model.user.UserName</h2>
+<p>
+    @if (Model.follows.deleted.Equals(true))
+    {
+        @Html.ActionLink("Follow", "Follow", new {u = Model.user.UserName})
+    }
+    else
+    {
+        @Html.ActionLink("Unfollow", "Unfollow", new {u = Model.user.UserName})
+    }
+
+</p>
 
 <h3>Posts</h3>
 @foreach (var post in Model.posts)
@@ -16,11 +27,11 @@
     </h3>
     <p>
         @post.text
-        <a class="like-comment pull-right btn btn-primary btn-xs" data-template-bind='{"attribute": "id", "value": "ID"}' onclick='AddDislike(id); return false' href="#">
+        <a class="like-comment pull-right btn btn-primary btn-xs" data-template-bind='{"attribute": "id", "value": "ID"}' onclick='AddDislike(@post.ID); return false' href="#">
             <span class="glyphicon glyphicon-thumbs-down"> </span> Dislike
         </a>
 
-        <a class="like-comment pull-right btn btn-primary btn-xs space" data-template-bind='{"attribute": "id", "value": "ID"}' onclick='AddLike(id); return false' href="#">
+        <a class="like-comment pull-right btn btn-primary btn-xs space" data-template-bind='{"attribute": "id", "value": "ID"}' onclick='AddLike(@post.ID); return false' href="#">
             <span class="glyphicon glyphicon-thumbs-up"></span> Like
         </a>
     </p>

@@ -6,6 +6,7 @@ namespace hringr.Models
     {
         public IEnumerable<ApplicationUser> users { get; set; }
         public ApplicationUser user { get; set; }
-        public IEnumerable<Post> posts { get; set; }  
+        public IEnumerable<Post> posts { get; set; }
+        public Follow follows { get; set; } 
     }
 }

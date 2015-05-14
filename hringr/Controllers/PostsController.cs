@@ -20,7 +20,7 @@ namespace hringr.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var posts = postRepo.GetAllPosts();
+            var posts = postRepo.GetAllPosts(m_db);
             return View(posts);
         }
 
@@ -32,7 +32,7 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var post = postRepo.GetPostById(id);
+            var post = postRepo.GetPostById(id, m_db);
             if (post == null)
             {
                 return HttpNotFound();
@@ -51,7 +51,7 @@ namespace hringr.Controllers
 
 
             CreatePostViewModel viewModel = new CreatePostViewModel();
-            viewModel.categories = postRepo.GetCategories();
+            viewModel.categories = postRepo.GetCategories(m_db);
             viewModel.post = new Post();
 
             return View(viewModel);
@@ -68,9 +68,9 @@ namespace hringr.Controllers
             if (ModelState.IsValid)
             {
                 string currentUserId = User.Identity.GetUserId();
-                ApplicationUser currentUser = postRepo.GetCurrentUser(currentUserId);
+                ApplicationUser currentUser = postRepo.GetCurrentUser(currentUserId, m_db);
                 post.user = currentUser;
-                postRepo.AddPost(post);
+                postRepo.AddPost(post, m_db);
                 return RedirectToAction("Index");
             }
             
@@ -86,8 +86,8 @@ namespace hringr.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             CreatePostViewModel viewModel = new CreatePostViewModel();
-            viewModel.categories = postRepo.GetCategories();
-            Post post = postRepo.GetPostById(id);
+            viewModel.categories = postRepo.GetCategories(m_db);
+            Post post = postRepo.GetPostById(id, m_db);
             post.date = DateTime.Now;
             viewModel.post = post;
             if (post == null)
@@ -106,7 +106,7 @@ namespace hringr.Controllers
         {
             if (ModelState.IsValid)
             {
-                postRepo.UpdatePost(post);
+                postRepo.UpdatePost(post, m_db);
                 return RedirectToAction("Index");
             }
             return View(post);
@@ -120,7 +120,7 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var post = postRepo.GetPostById(id);
+            var post = postRepo.GetPostById(id, m_db);
             if (post == null)
             {
                 return HttpNotFound();
@@ -136,8 +136,8 @@ namespace hringr.Controllers
             /*Post post = db.Posts.Find(id);
             db.Posts.Remove(post);
             db.SaveChanges();*/
-            var post = postRepo.GetPostById(id);
-            postRepo.DeletePost(post);
+            var post = postRepo.GetPostById(id, m_db);
+            postRepo.DeletePost(post, m_db);
             return RedirectToAction("Index");
         }
 
@@ -159,8 +159,8 @@ namespace hringr.Controllers
                 lk.postID = postingID;
 
 
-                if (!PostRepository.Instance.userLikedBefore(postingID, lk.user.UserName))
-                    PostRepository.Instance.AddLike(lk);
+                if (!postRepo.userLikedBefore(postingID, lk.user.UserName, m_db))
+                    postRepo.AddLike(lk, m_db);
 
                 return Json(lk, JsonRequestBehavior.AllowGet);
             }
@@ -179,8 +179,8 @@ namespace hringr.Controllers
                 lk.postID = postingID;
 
 
-                if (!PostRepository.Instance.userLikedBefore(postingID, lk.user.UserName))
-                    PostRepository.Instance.AddDislike(lk);
+                if (!postRepo.userLikedBefore(postingID, lk.user.UserName, m_db))
+                    postRepo.AddDislike(lk, m_db);
 
                 return Json(lk, JsonRequestBehavior.AllowGet);
             }
@@ -192,13 +192,13 @@ namespace hringr.Controllers
 
         public ActionResult GetLikes(int postId)
         {
-            var like = PostRepository.Instance.GetLikes(postId);
+            var like = postRepo.GetLikes(postId, m_db);
             return Json(like, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetDislikes(int postId)
         {
-            var dislike = PostRepository.Instance.GetLikes(postId);
+            var dislike = postRepo.GetLikes(postId, m_db);
             return Json(dislike, JsonRequestBehavior.AllowGet);
         }
     }
