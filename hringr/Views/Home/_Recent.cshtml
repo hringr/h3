@@ -5,7 +5,7 @@
 {
     <div class="well">
         <h3>
-            @Html.ActionLink(item.title, "Details", "Posts", new { id = item.ID }) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
+            @Html.ActionLink(item.title, "Details", "Posts", new { id = item.ID }, null) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
         </h3>
         <p>
             @Html.DisplayFor(modelItem => item.text)
@@ -21,8 +21,8 @@
 
 
             @Html.ActionLink("Comment", "Create", "Comments", new { id = item.ID }, null) |
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            @Html.ActionLink("Edit", "Edit", "Posts", new { id = item.ID }, null) |
+            @Html.ActionLink("Delete", "Delete", "Posts", new { id = item.ID }, null)
         </p>
     </div>
 }
