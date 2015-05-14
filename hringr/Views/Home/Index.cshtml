@@ -1,5 +1,21 @@
-﻿@{
+﻿@using System.Security.Cryptography
+@using hringr.Models
+@{
     ViewBag.Title = "Home Page";
 }
-<h1>My wall!</h1>
-<img src="../../images/bird2.png"/>
+<div id="posts-wrapper">
+    @Html.Partial("_Recent")
+</div>
+
+<div id="loading">
+    <img src='@Url.Content("~/images/spin.gif")' /><p><b>Loading the next @ViewBag.RecordsPerPage&hellip;</b></p>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(function() {
+            $("div#loading").hide();
+            var moreRowsUrl = "/Home/Recent";
+            $(window).scroll({ address: moreRowsUrl }, scrollHandler);
+        });
+    </script>
+}

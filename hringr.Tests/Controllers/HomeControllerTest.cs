@@ -19,10 +19,11 @@ namespace hringr.Tests.Controllers
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            RedirectResult result = controller.Index() as RedirectResult;
+            //ViewResult result = controller.Recent(1) as ViewResult;
 
             // Assert
-            Assert.IsNotNull(result);
+            Assert.IsNull(result);
         }
 
         [TestMethod]

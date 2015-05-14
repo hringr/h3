@@ -7,3 +7,4 @@
 /// <reference path="jquery.validate.unobtrusive.js" />
 /// <reference path="scripts.js" />
 /// <reference path="bootstrap-validation.js" />
+/// <reference path="infinitescroll.js" />
