@@ -96,7 +96,6 @@ namespace hringr.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Group group = groupRepo.GetGroupById(id);
-            groupRepo.DeleteGroup(group);
             if (group == null)
             {
                 return HttpNotFound();
