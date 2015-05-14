@@ -43,7 +43,14 @@ namespace hringr.Repository
 
         public void AddFollow(Follow model, ApplicationDbContext m_db)
         {
-            m_db.Follows.Add(model);
+            if (model.deleted.Equals(false))
+            {
+                m_db.Follows.Add(model);
+            }
+            else
+            {
+                model.deleted = false;
+            }
             m_db.SaveChanges();
         }
 
