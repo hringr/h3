@@ -3,17 +3,20 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using hringr.Models;
+using hringr.Repository;
 
 namespace hringr.Controllers
 {
     public class GroupController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private GroupRepository groupRepo = new GroupRepository();
 
         // GET: /Group/
         public ActionResult Index()
         {
-            return View(db.Groups.ToList());
+            var groups = groupRepo.GetAllGroups();
+            return View(groups);
         }
 
         // GET: /Group/Details/5
@@ -23,7 +26,7 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
+            Group group = groupRepo.GetGroupById(id);
             if (group == null)
             {
                 return HttpNotFound();
@@ -46,8 +49,7 @@ namespace hringr.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Groups.Add(group);
-                db.SaveChanges();
+                groupRepo.CreateGroup(group);
                 return RedirectToAction("Index");
             }
 
@@ -61,7 +63,7 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
+            Group group = groupRepo.GetGroupById(id);
             if (group == null)
             {
                 return HttpNotFound();
@@ -78,8 +80,9 @@ namespace hringr.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(group).State = EntityState.Modified;
-                db.SaveChanges();
+                /*db.Entry(group).State = EntityState.Modified;
+                db.SaveChanges();*/
+                groupRepo.UpdateGroup(group);
                 return RedirectToAction("Index");
             }
             return View(group);
