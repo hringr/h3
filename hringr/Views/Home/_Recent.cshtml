@@ -1,11 +1,16 @@
 ﻿@using hringr.Models
 @model List<Post>
 
+<span class="pull-right">
+    <a href="../"> <img src="../../images/bird2.png" width="60" height="60" class="pull-left" /></a>
+</span>
+
 @foreach (var item in Model)
 {
     <div class="well">
+        
         <h3>
-            @Html.ActionLink(item.title, "Details", "Posts", new { id = item.ID }, null) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
+            @Html.ActionLink(item.title, "Details", "Posts", new {id = item.ID}, null) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
         </h3>
         <p>
             @Html.DisplayFor(modelItem => item.text)
@@ -20,9 +25,9 @@
             </a>
 
 
-            @Html.ActionLink("Comment", "Create", "Comments", new { id = item.ID }, null) |
-            @Html.ActionLink("Edit", "Edit", "Posts", new { id = item.ID }, null) |
-            @Html.ActionLink("Delete", "Delete", "Posts", new { id = item.ID }, null)
+            @Html.ActionLink("Comment", "Create", "Comments", new {id = item.ID}, null) |
+            @Html.ActionLink("Edit", "Edit", "Posts", new {id = item.ID}, null) |
+            @Html.ActionLink("Delete", "Delete", "Posts", new {id = item.ID}, null)
         </p>
     </div>
 }

@@ -4,93 +4,33 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Post details</h2>
+<h2>
+    @Html.DisplayFor(model => model.title)
+    <span class="pull-right">
+        <a href="../"> <img src="../../images/bird2.png" width="60" height="60" class="pull-left" /></a>
+    </span>
+</h2>
 
 <div class="well">
-    <h4>@Html.DisplayFor(model => model.title)</h4>
-    <!--<hr />-->
-    <dl class="dl-horizontal">
-       
-        <dt>
-            @Html.DisplayNameFor(model => model.category)
-        </dt>
+    <span class="pull-right">
+        @Html.DisplayFor(model => model.date)
+    </span>
+    <h4>@Html.DisplayFor(model => model.text)</h4>
+    <!--<hr/>-->
+    <br/>
+    <dl class="right">
+        <dd>
+            @Html.LabelFor(model => model.link, "Link:")
+            <a href="@Model.link">@Model.link</a>
+        </dd>
 
         <dd>
+            @Html.LabelFor(model => model.category, "Category:")
             @Html.DisplayFor(model => model.category.name)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.text)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.text)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.link)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.link)
-        </dd>
-
-
     </dl>
 </div>
 
-<ul class="list-group" style="max-width: 560px;">
-    <div id="commentList"></div>
-    <li class="list-group-item">
-        <div class="form-horizontal">
-            <label class="sr-only" for="CommentText">Comment</label>
-            <textarea class="form-control" rows="3" id="CommentText" name="CommentText"></textarea>
-            <button type="submit" id="submit" onclick="AddComment()" class="btn btn-primary">Send</button>
-        </div>
-    </li>
-</ul>
-
-<script id="template" type="text/html">
-    <li class="comment, list-group-item">
-        <p>
-            <span class="glyphicon glyphicon-user"></span>
-            <span data-content="Username" class="text-primary"></span>
-            <span data-content="CommentText"></span>
-        </p>
-        <p>
-            <span data-content="CommentDate" class="text-muted"> - </span>
-            <a class="like-comment" data-template-bind='{"attribute": "id", "value": "ID"}' onclick='AddLike(id); return false' href="#">Like<span class="glyphicon glyphicon-thumbs-up"></span></a>
-
-            @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
-            {
-                <button type="submit" id="delete">Delete</button>
-            }
-        </p>
-        <ul data-template-bind='{"attribute": "class", "value": "ID"}' style="list-style:none"></ul>
-</script>
-
-<script id="templateForLikes" type="text/html">
-    <li>
-        <span data-content="Username"></span>
-        <span> Likes it alot! </span>
-    </li>
-</script>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
