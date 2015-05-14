@@ -9,7 +9,8 @@
             @Html.ActionLink(item.title, "Details", "Posts", new {id = item.ID}, null) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
         </h3>
         <p>
-            @Html.DisplayFor(modelItem => item.text)
+            <label>Category:</label>
+            @Html.DisplayFor(modelItem => item.category.name)
         </p>
         <p>
             <a class="like-comment pull-right btn btn-primary btn-xs" data-template-bind='{"attribute": "id", "value": "ID"}' onclick='AddDislike(id); return false' href="#">
