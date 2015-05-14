@@ -26,7 +26,7 @@ namespace hringr.Controllers
             // 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_Recent", posts);
+                return PartialView("_Posts", posts);
             }
             else
             {
