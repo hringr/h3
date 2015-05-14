@@ -114,7 +114,7 @@
   <ItemGroup>
     <ProjectReference Include="..\hringr\hringr.csproj">
       <Project>{80C746AF-5A00-4060-BF87-6B27A9D56C55}</Project>
-      <Name>hringr123</Name>
+      <Name>hringr</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
