@@ -211,6 +211,7 @@
     <Content Include="images\mynd4.jpg" />
     <Content Include="images\mynd5.jpg" />
     <Content Include="images\mynd6.jpg" />
+    <Content Include="images\spin.gif" />
     <Content Include="Scripts\bootstrap-validation.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
