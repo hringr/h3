@@ -85,12 +85,16 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var post = postRepo.GetPostById(id);
+            CreatePostViewModel viewModel = new CreatePostViewModel();
+            viewModel.categories = postRepo.GetCategories();
+            Post post = postRepo.GetPostById(id);
+            post.date = DateTime.Now;
+            viewModel.post = post;
             if (post == null)
             {
                 return HttpNotFound();
             }
-            return View(post);
+            return View(viewModel);
         }
 
         // POST: Posts/Edit/5
@@ -98,12 +102,10 @@ namespace hringr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,userID,category,date,title,text,link,groupID,category")] Post post)
+        public ActionResult Edit([Bind(Include = "ID,categoryID,userID,date,title,text,link,groupID")] Post post)
         {
             if (ModelState.IsValid)
             {
-                /*db.Entry(post).State = EntityState.Modified;
-                db.SaveChanges();*/
                 postRepo.UpdatePost(post);
                 return RedirectToAction("Index");
             }
