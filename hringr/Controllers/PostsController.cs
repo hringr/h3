@@ -15,6 +15,7 @@ namespace hringr.Controllers
     {
         private ApplicationDbContext m_db = new ApplicationDbContext();
         private PostRepository postRepo = new PostRepository();
+        private UserRepository userRepo = new UserRepository();
 
         // GET: Posts
         [Authorize]
@@ -158,6 +159,7 @@ namespace hringr.Controllers
 
                 lk.postID = postingID;
 
+                lk.user = userRepo.GetUserByUserName(User.Identity.GetUserName(), m_db);
 
                 if (!postRepo.userLikedBefore(postingID, lk.user.UserName, m_db))
                     postRepo.AddLike(lk, m_db);

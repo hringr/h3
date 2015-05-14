@@ -55,8 +55,7 @@ namespace hringr.Controllers
             }
             else
             {
-                follow.deleted = false;
-                m_db.SaveChanges();
+                userRepo.AddFollow(follow, m_db);
             }
             return RedirectToAction("Details", "User", new { u = followee.UserName });
         }
