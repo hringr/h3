@@ -159,10 +159,10 @@ namespace hringr.Controllers
                 Like lk = new Like
                 {
                     postID = postingID,
-                    user = userRepo.GetUserByUserName(User.Identity.GetUserName(), m_db)
+                    userID = User.Identity.GetUserId()
                 };
 
-                if (!postRepo.userLikedBefore(postingID, lk.user, m_db))
+                if (!postRepo.userLikedBefore(lk, m_db))
                     postRepo.AddLike(lk, m_db);
 
                 return Json(lk, JsonRequestBehavior.AllowGet);
@@ -185,8 +185,8 @@ namespace hringr.Controllers
 
 
 
-                if (!postRepo.userLikedBefore(postingID, lk.user, m_db))
-                    postRepo.AddDislike(lk, m_db);
+                //if (!postRepo.userLikedBefore(lk, m_db))
+                //    postRepo.AddDislike(lk, m_db);
 
                 return Json(lk, JsonRequestBehavior.AllowGet);
             }

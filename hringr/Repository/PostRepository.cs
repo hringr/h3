@@ -101,11 +101,11 @@ namespace hringr.Repository
             m_db.SaveChanges();
         }
 
-        public bool userLikedBefore(int id, ApplicationUser user, ApplicationDbContext m_db)
+        public bool userLikedBefore(Like lk, ApplicationDbContext m_db)
         {
             foreach (var like in m_db.Likes)
             {
-                if (like.postID == id && like.user == user)
+                if (like.postID.Equals(lk.postID) && like.userID.Equals(lk.userID))
                     return true;
             }
             return false;
