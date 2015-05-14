@@ -25,6 +25,7 @@ namespace hringr.Controllers
         }
         public ActionResult Details(string u)
         {
+            u = u ?? User.Identity.GetUserName();
             var user = userRepo.GetUserByUserName(u, m_db);
             var currentUser = userRepo.GetUserByUserName(User.Identity.GetUserName(), m_db);
             var posts = postRepo.GetPostByUserId(user.Id, m_db);
