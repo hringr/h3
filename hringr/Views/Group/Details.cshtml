@@ -11,7 +11,7 @@
 <div>
     <h4>Group details</h4>
 	<br />
-    <dl class="dl-horizontal">
+    <dl class="well">
         <dt>
             @Html.LabelFor(model => model.name, "Group name:")
         </dt>
@@ -23,6 +23,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new {id = Model.ID}) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
