@@ -8,6 +8,7 @@ namespace hringr.Models
         public Post()
         {
             date = DateTime.Now;
+            
         }
 
         public int ID { get; set; }
