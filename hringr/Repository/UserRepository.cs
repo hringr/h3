@@ -36,7 +36,7 @@ namespace hringr.Repository
             var result = 
                 (from x in m_db.Users
                 where x.UserName.Equals(usr)
-                select x).SingleOrDefault();
+                select x).Single();
 
             return result;
         }

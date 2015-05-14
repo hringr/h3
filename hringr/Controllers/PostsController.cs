@@ -8,6 +8,7 @@ using System.Web.Security;
 using hringr.Models;
 using hringr.Repository;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 
 namespace hringr.Controllers
 {
@@ -155,13 +156,13 @@ namespace hringr.Controllers
         {
             if (postingID != 0)
             {
-                Like lk = new Like();
+                Like lk = new Like
+                {
+                    postID = postingID,
+                    userID = User.Identity.GetUserId()
+                };
 
-                lk.postID = postingID;
-
-                lk.user = userRepo.GetUserByUserName(User.Identity.GetUserName(), m_db);
-
-                if (!postRepo.userLikedBefore(postingID, lk.user.UserName, m_db))
+                if (!postRepo.userLikedBefore(lk, m_db))
                     postRepo.AddLike(lk, m_db);
 
                 return Json(lk, JsonRequestBehavior.AllowGet);
@@ -176,12 +177,13 @@ namespace hringr.Controllers
         {
             if (postingID != 0)
             {
-                Dislike lk = new Dislike();
+                Dislike lk = new Dislike
+                {
+                    postID = postingID,
+                    userID = User.Identity.GetUserId()
+                };
 
-                lk.postID = postingID;
-
-
-                if (!postRepo.userLikedBefore(postingID, lk.user.UserName, m_db))
+                if (!postRepo.userDislikedBefore(lk, m_db))
                     postRepo.AddDislike(lk, m_db);
 
                 return Json(lk, JsonRequestBehavior.AllowGet);
@@ -200,7 +202,7 @@ namespace hringr.Controllers
 
         public ActionResult GetDislikes(int postId)
         {
-            var dislike = postRepo.GetLikes(postId, m_db);
+            var dislike = postRepo.GetDislikes(postId, m_db);
             return Json(dislike, JsonRequestBehavior.AllowGet);
         }
     }

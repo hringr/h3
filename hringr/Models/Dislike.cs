@@ -7,6 +7,6 @@ namespace hringr.Models
         
         public int postID { get; set; }
 
-        public virtual ApplicationUser user { get; set; }
+        public string userID { get; set; }
     }
 }
