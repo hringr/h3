@@ -199,3 +199,4 @@ FakesAssemblies/
 */**/*.db
 
 hringr/hringr123.csproj
+*.stackdump
