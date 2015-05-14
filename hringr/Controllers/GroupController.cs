@@ -95,7 +95,8 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
+            Group group = groupRepo.GetGroupById(id);
+            groupRepo.DeleteGroup(group);
             if (group == null)
             {
                 return HttpNotFound();
@@ -108,9 +109,8 @@ namespace hringr.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Group group = db.Groups.Find(id);
-            db.Groups.Remove(group);
-            db.SaveChanges();
+            Group group = groupRepo.GetGroupById(id);
+            groupRepo.DeleteGroup(group);
             return RedirectToAction("Index");
         }
 
