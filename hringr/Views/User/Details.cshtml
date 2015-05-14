@@ -7,36 +7,20 @@
 
 <h2>@Model.user.UserName</h2>
 
-<p>
-    @if (Model.follows != null && Model.follows.deleted.Equals(false))
-    {
-        @Html.ActionLink("Unfollow", "Unfollow", new {u = Model.user.UserName})
-             
-    }
-    else
-    {
-        @Html.ActionLink("Follow", "Follow", new {u = Model.user.UserName})
-    }
+@if (@Model.user.UserName != User.Identity.Name)
+{
+    <p>
+        @if (Model.follows != null && Model.follows.deleted.Equals(false))
+        {
+            @Html.ActionLink("Unfollow", "Unfollow", new {u = Model.user.UserName})
 
-</p>
+        }
+        else
+        {
+            @Html.ActionLink("Follow", "Follow", new {u = Model.user.UserName})
+        }
+    </p>
+}
 
 <h3>Posts</h3>
-@foreach (var post in Model.posts)
-{
-  <div class="well">
-    <h3>
-        @post.title <small class="pull-right">@post.date </small>
-    </h3>
-    <p>
-        @post.text
-        <a class="like-comment pull-right btn btn-primary btn-xs" data-template-bind='{"attribute": "id", "value": "ID"}' onclick='AddDislike(@post.ID); return false' href="#">
-            <span class="glyphicon glyphicon-thumbs-down"> </span> Dislike
-        </a>
-
-        <a class="like-comment pull-right btn btn-primary btn-xs space" data-template-bind='{"attribute": "id", "value": "ID"}' onclick='AddLike(@post.ID); return false' href="#">
-            <span class="glyphicon glyphicon-thumbs-up"></span> Like
-        </a>
-    </p>
-
-  </div>
-}
+@Html.Partial("_Posts", @Model.posts)

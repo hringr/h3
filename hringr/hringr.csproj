@@ -299,7 +299,7 @@
     <Content Include="Views\Follow\Details.cshtml" />
     <Content Include="Views\Follow\Edit.cshtml" />
     <Content Include="Views\Follow\Index.cshtml" />
-    <Content Include="Views\Home\_Recent.cshtml" />
+    <Content Include="Views\Shared\_Posts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

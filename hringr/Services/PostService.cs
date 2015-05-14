@@ -12,7 +12,7 @@ namespace hringr.Services
             _db = context ?? new ApplicationDbContext();
         }
 
-        public List<Post> GetMostRecentPosts(int postsPerPage, int pageNumber)
+        public IEnumerable<Post> GetMostRecentPosts(int postsPerPage, int pageNumber)
         {
             var skip = postsPerPage * pageNumber;
             var posts = (from up in _db.Posts
@@ -21,7 +21,7 @@ namespace hringr.Services
 
             return posts;
         }
-        public List<Post> GetMostRecentPostsForUser(ApplicationUser author, int postsPerPage, int pageNumber)
+        public IEnumerable<Post> GetMostRecentPostsForUser(ApplicationUser author, int postsPerPage, int pageNumber)
         {
             var skip = postsPerPage * pageNumber;
             var posts = (from up in _db.Posts
