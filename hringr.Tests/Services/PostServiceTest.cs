@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using hringr.Models;
 using hringr.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,7 +19,7 @@ namespace hringr.Tests.Services
             var result = _service.GetMostRecentPosts(postsPerPage, pageNumber);
 
             // Assert
-            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Count());
         }
 
         [TestMethod]
@@ -32,7 +33,7 @@ namespace hringr.Tests.Services
             var result = _service.GetMostRecentPosts(postsPerPage, pageNumber);
 
             // Assert
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count());
         }
 
         [TestMethod]
@@ -46,7 +47,7 @@ namespace hringr.Tests.Services
             var result = _service.GetMostRecentPosts(postsPerPage, pageNumber);
 
             // Assert
-            Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count());
         }
 
         [TestMethod]
@@ -60,7 +61,7 @@ namespace hringr.Tests.Services
             var result = _service.GetMostRecentPostsForUser(_user1, postsPerPage, pageNumber);
 
             // Assert
-            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Count());
         }
     }
 }
