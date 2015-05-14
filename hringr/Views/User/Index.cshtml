@@ -11,8 +11,8 @@
     @foreach (var user in Model)
     {
         <div class="well well-sm">
-                <h3>
-                    @Html.ActionLink(user.UserName, "Details", "User", new { u = user.UserName }, null)
-                </h3>
-            </div>
+            <h3>
+                @Html.ActionLink(user.UserName, "Details", "User", new {u = user.UserName}, null)
+            </h3>
+        </div>
     }
