@@ -111,6 +111,16 @@ namespace hringr.Repository
             return false;
         }
 
+        public bool userDislikedBefore(Dislike lk, ApplicationDbContext m_db)
+        {
+            foreach (var dislike in m_db.Dislikes)
+            {
+                if (dislike.postID.Equals(lk.postID) && dislike.userID.Equals(lk.userID))
+                    return true;
+            }
+            return false;
+        }
+
         public IEnumerable<SelectListItem> GetCategories(ApplicationDbContext m_db)
         {
             return m_db.Categories.Select(c => new SelectListItem

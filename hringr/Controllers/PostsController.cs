@@ -180,13 +180,11 @@ namespace hringr.Controllers
                 Dislike lk = new Dislike
                 {
                     postID = postingID,
-                    user = userRepo.GetUserByUserName(User.Identity.GetUserName(), m_db)
+                    userID = User.Identity.GetUserId()
                 };
 
-
-
-                //if (!postRepo.userLikedBefore(lk, m_db))
-                //    postRepo.AddDislike(lk, m_db);
+                if (!postRepo.userDislikedBefore(lk, m_db))
+                    postRepo.AddDislike(lk, m_db);
 
                 return Json(lk, JsonRequestBehavior.AllowGet);
             }
@@ -204,7 +202,7 @@ namespace hringr.Controllers
 
         public ActionResult GetDislikes(int postId)
         {
-            var dislike = postRepo.GetLikes(postId, m_db);
+            var dislike = postRepo.GetDislikes(postId, m_db);
             return Json(dislike, JsonRequestBehavior.AllowGet);
         }
     }
