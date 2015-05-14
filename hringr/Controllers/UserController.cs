@@ -29,10 +29,12 @@ namespace hringr.Controllers
             var currentUser = userRepo.GetUserByUserName(User.Identity.GetUserName(), m_db);
             var posts = postRepo.GetPostByUserId(user.Id, m_db);
             var follow = userRepo.FindFollow(currentUser.Id, user.Id, m_db);
-            UserViewModels viewModel = new UserViewModels();
-            viewModel.user = user;
-            viewModel.posts = posts;
-            viewModel.follows = follow;
+            UserViewModels viewModel = new UserViewModels
+            {
+                user = user,
+                posts = posts,
+                follows = follow
+            };
             return View(viewModel);
         }
         public ActionResult Follow(string u)
@@ -43,13 +45,13 @@ namespace hringr.Controllers
 
             if (follow == null)
             {
-                Follow followModel = new Follow();
-                string currentUserId = User.Identity.GetUserId();
-                var user = postRepo.GetCurrentUser(currentUserId, m_db);
-                followModel.user = user;
-                followModel.followee = followee;
-                followModel.deleted = false;
-                userRepo.AddFollow(follow, m_db);
+                Follow followModel = new Follow
+                {
+                    user = currentUser,
+                    followee = followee,
+                    deleted = false
+                };
+                userRepo.AddFollow(followModel, m_db);
             }
             else
             {

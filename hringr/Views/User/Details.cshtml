@@ -7,13 +7,14 @@
 
 <h2>@Model.user.UserName</h2>
 <p>
-    @if (Model.follows.deleted.Equals(true))
+    @if (Model.follows != null && Model.follows.deleted.Equals(false))
     {
-        @Html.ActionLink("Follow", "Follow", new {u = Model.user.UserName})
+        @Html.ActionLink("Unfollow", "Unfollow", new {u = Model.user.UserName})
+             
     }
     else
     {
-        @Html.ActionLink("Unfollow", "Unfollow", new {u = Model.user.UserName})
+        @Html.ActionLink("Follow", "Follow", new {u = Model.user.UserName})
     }
 
 </p>
