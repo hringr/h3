@@ -9,6 +9,8 @@ namespace hringr.Tests.Services
     public partial class PostServiceTest
     {
         private PostService _service;
+        private readonly ApplicationUser _user1 = new ApplicationUser();
+        private readonly ApplicationUser _user2 = new ApplicationUser();
 
         [TestInitialize]
         public void Initialize()
@@ -22,7 +24,7 @@ namespace hringr.Tests.Services
                 title = "Titill",
                 text = "Bla",
                 link = "http://mbl.is",
-                user = new ApplicationUser(),
+                user = _user1,
                 categoryID = 1,
                 groupID = 1
             };
@@ -35,7 +37,7 @@ namespace hringr.Tests.Services
                 title = "Titill2",
                 text = "Bla",
                 link = "http://mbl.is",
-                user = new ApplicationUser(),
+                user = _user2,
                 categoryID = 1,
                 groupID = 1
             };
@@ -48,7 +50,7 @@ namespace hringr.Tests.Services
                 title = "Titill3",
                 text = "Bla",
                 link = "http://mbl.is",
-                user = new ApplicationUser(),
+                user = _user1,
                 categoryID = 1,
                 groupID = 1
             };

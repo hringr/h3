@@ -21,9 +21,14 @@ namespace hringr.Services
 
             return posts;
         }
-        public List<Post> GetMostRecentPostsForUser(ApplicationUser author)
+        public List<Post> GetMostRecentPostsForUser(ApplicationUser author, int postsPerPage, int pageNumber)
         {
-            return new List<Post>();
+            var skip = postsPerPage * pageNumber;
+            var posts = (from up in _db.Posts
+                         where up.user == author
+                         orderby up.date descending
+                         select up).Skip(skip).Take(postsPerPage).ToList();
+            return posts;
         }
     }
 }

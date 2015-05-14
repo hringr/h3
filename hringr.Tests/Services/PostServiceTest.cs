@@ -48,5 +48,19 @@ namespace hringr.Tests.Services
             // Assert
             Assert.AreEqual(0, result.Count);
         }
+
+        [TestMethod]
+        public void TestPostsByUser()
+        {
+            // Arrange
+            int postsPerPage = 8;
+            int pageNumber = 0;
+
+            // Act
+            var result = _service.GetMostRecentPostsForUser(_user1, postsPerPage, pageNumber);
+
+            // Assert
+            Assert.AreEqual(2, result.Count);
+        }
     }
 }
