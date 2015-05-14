@@ -177,11 +177,13 @@ namespace hringr.Controllers
         {
             if (postingID != 0)
             {
-                Dislike lk = new Dislike();
+                Dislike lk = new Dislike
+                {
+                    postID = postingID,
+                    user = userRepo.GetUserByUserName(User.Identity.GetUserName(), m_db)
+                };
 
-                lk.postID = postingID;
 
-                lk.user = userRepo.GetUserByUserName(User.Identity.GetUserName(), m_db);
 
                 if (!postRepo.userLikedBefore(postingID, lk.user, m_db))
                     postRepo.AddDislike(lk, m_db);
