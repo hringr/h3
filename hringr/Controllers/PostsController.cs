@@ -23,6 +23,7 @@ namespace hringr.Controllers
         public ActionResult Index()
         {
             var posts = postRepo.GetAllPosts(m_db);
+            posts = postRepo.GetPostLikes(posts, m_db);
             return View(posts);
         }
 

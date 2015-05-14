@@ -24,9 +24,11 @@ namespace hringr.Repository
 
         public IEnumerable<Post> GetAllPosts(ApplicationDbContext m_db)
         {
-            var result = (from n in m_db.Posts
+            var result = (
+                from n in m_db.Posts
                 orderby n.date descending
-                select n).ToList().Take(10);
+                select n
+                ).ToList().Take(10);
             return result;
         }
 
@@ -40,10 +42,12 @@ namespace hringr.Repository
 
         public IEnumerable<Post> GetPostByUserId(string id, ApplicationDbContext m_db)
         {
-            var result = (from x in m_db.Posts
+            var result = (
+                from x in m_db.Posts
                 where x.user.Id.Equals(id)
                 orderby x.date descending
-                select x).ToList();
+                select x
+                ).ToList();
             return result;
         }
 
@@ -75,9 +79,23 @@ namespace hringr.Repository
 
         public IEnumerable<Like> GetLikes(int id, ApplicationDbContext m_db)
         {
-            var result = from lk in m_db.Likes
+            var result = 
+                from lk in m_db.Likes
                 where lk.postID == id
                 select lk;
+            return result;
+        }
+
+        // Oh dear god I created a monster
+        // Bad Simmi! BAD!
+        public IEnumerable<Post> GetPostLikes(IEnumerable<Post> posts, ApplicationDbContext m_db)
+        {
+            var result = posts;
+            foreach (var post in result)
+            {
+                post.likes = GetLikes(post.ID, m_db);
+                post.dislikes = GetDislikes(post.ID, m_db);
+            }
             return result;
         }
 

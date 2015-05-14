@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace hringr.Models
@@ -30,5 +31,7 @@ namespace hringr.Models
         public virtual Category category { get; set; }
 
         public virtual ApplicationUser user { get; set; }
+        public virtual IEnumerable<Like> likes { get; set; }
+        public virtual IEnumerable<Dislike> dislikes { get; set; } 
     }
 }
