@@ -7,18 +7,20 @@
 
 <h2>@Model.user.UserName</h2>
 
-<p>
-    @if (Model.follows != null && Model.follows.deleted.Equals(false))
-    {
-        @Html.ActionLink("Unfollow", "Unfollow", new {u = Model.user.UserName})
-             
-    }
-    else
-    {
-        @Html.ActionLink("Follow", "Follow", new {u = Model.user.UserName})
-    }
+@if (@Model.user.UserName != User.Identity.Name)
+{
+    <p>
+        @if (Model.follows != null && Model.follows.deleted.Equals(false))
+        {
+            @Html.ActionLink("Unfollow", "Unfollow", new {u = Model.user.UserName})
 
-</p>
+        }
+        else
+        {
+            @Html.ActionLink("Follow", "Follow", new {u = Model.user.UserName})
+        }
+    </p>
+}
 
 <h3>Posts</h3>
 @foreach (var post in Model.posts)
