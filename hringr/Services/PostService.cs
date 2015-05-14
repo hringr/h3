@@ -14,7 +14,7 @@ namespace hringr.Services
 
         public List<Post> GetMostRecentPosts(int postsPerPage, int pageNumber)
         {
-            var skip = postsPerPage * (pageNumber - 1);
+            var skip = postsPerPage * pageNumber;
             var posts = (from up in _db.Posts
                          orderby up.date descending
                          select up).Skip(skip).Take(postsPerPage).ToList();

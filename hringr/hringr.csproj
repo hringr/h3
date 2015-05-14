@@ -211,10 +211,12 @@
     <Content Include="images\mynd4.jpg" />
     <Content Include="images\mynd5.jpg" />
     <Content Include="images\mynd6.jpg" />
+    <Content Include="images\spin.gif" />
     <Content Include="Scripts\bootstrap-validation.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
+    <Content Include="Scripts\infiniteScroll.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -295,6 +297,7 @@
     <Content Include="Views\Follow\Details.cshtml" />
     <Content Include="Views\Follow\Edit.cshtml" />
     <Content Include="Views\Follow\Index.cshtml" />
+    <Content Include="Views\Home\_Recent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

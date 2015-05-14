@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using hringr.Models;
 using hringr.Repository;
+using hringr.Services;
 
 namespace hringr.Controllers
 {
@@ -13,7 +14,24 @@ namespace hringr.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Recent");
+        }
+
+        public ActionResult Recent(int? pageNumber)
+        {
+            pageNumber = pageNumber ?? 0;
+            var service = new PostService(null);
+            var postsPerPage = 8;
+            var posts = service.GetMostRecentPosts(postsPerPage, pageNumber.Value);
+            // 
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Recent", posts);
+            }
+            else
+            {
+                return View("Index", posts);
+            }
         }
 
         public ActionResult About()

@@ -34,7 +34,7 @@ namespace hringr.Repository
         {
             var result = (from n in m_db.Posts
                           where n.ID == id
-                          select n).SingleOrDefault();
+                          select n).FirstOrDefault();
             return result;
         }
 
@@ -61,6 +61,8 @@ namespace hringr.Repository
                 t.title = n.title;
                 t.link = n.link;
                 t.text = n.text;
+                t.date = n.date;
+                t.categoryID = n.categoryID;
                 m_db.SaveChanges();
             }
         }
