@@ -300,6 +300,7 @@
     <Content Include="Views\Follow\Edit.cshtml" />
     <Content Include="Views\Follow\Index.cshtml" />
     <Content Include="Views\Shared\_Posts.cshtml" />
+    <Content Include="Views\Group\Members.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

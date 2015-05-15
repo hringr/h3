@@ -4,11 +4,15 @@ namespace hringr.Models
 {
     public class GroupMember
     {
+        public GroupMember()
+        {
+            deleted = false;
+        }
         public int ID { get; set; }
 
-        public virtual ApplicationUser user { get; set; }
+        public string userID { get; set; }
 
-        public virtual Group groups { get; set; }
+        public int groupID { get; set; }
 
         public bool deleted { get; set; }
     }

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<hringr.Models.Group>
+﻿@using System.Web.UI.WebControls
+@using Microsoft.AspNet.Identity
+@model IEnumerable<hringr.Models.Group>
 
 @{
     ViewBag.Title = "Index";
@@ -15,14 +17,15 @@
         {
             <div class="well">
                 <h3>
-                    @using (Html.BeginForm()) {
-                        @Html.AntiForgeryToken()
-                        @Html.ActionLink(item.name, "Details", new { id = item.ID }) <small class=" pull-right"><input type="submit" value="Join" class="btn btn-default" /></small>
-                    }
+                    @Html.ActionLink(item.name, "Details", new { id = item.ID })
                 </h3>
-                <p>
-                    @Html.DisplayFor(modelItem => item.member)
-                </p>
+                <div class="pull-right">
+                    @if (!item.member.Any(x => x.userID == User.Identity.GetUserId() && item.ID ==x.groupID))
+                    {
+                        @Html.ActionLink("Join", "AddMemberToGroup", new { id = item.ID })
+                    }
+                </div>
+                
                 <p>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.ID })

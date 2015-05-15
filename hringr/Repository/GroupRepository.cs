@@ -61,42 +61,37 @@ namespace hringr.Repository
         public GroupMember FindGroup(string uID, int gID)
         {
             var result =(from x in m_db.GroupMembers
-                             where x.user.Id == uID
-                             && x.groups.ID == gID
+                             where x.userID == uID
+                             && x.groupID == gID
                              select x).SingleOrDefault();
             return result;
         }
 
         public void AddToGroup(GroupMember model)
         {
-            if(model.deleted.Equals(null))
-            {
-                m_db.GroupMembers.Add(model);
-            }
-            else
-            {
-                model.deleted = false;
-            }
+            m_db.GroupMembers.Add(model);
             m_db.SaveChanges();
         }
 
         public void RemoveFromGroup(string uID, int gID)
         {
             var result = (from x in m_db.GroupMembers
-                          where x.user.Id == uID
-                          && x.groups.ID == gID
+                          where x.userID == uID
+                          && x.groupID == gID
                           select x).First();
             result.deleted = true;
             m_db.SaveChanges();
         }
 
-        public IEnumerable<SelectListItem> GetMembers()
+        public IEnumerable<ApplicationUser> GetMembers(int id)
         {
-            return m_db.GroupMembers.Select(x => new SelectListItem
-                {
-                    Text = x.user.FullName,
-                    Value = x.user.Id
-                });
+            var result = (
+                from x in m_db.GroupMembers
+                join u in m_db.Users on x.userID equals u.Id
+                where x.groupID == id
+                select u
+                ).ToList();
+            return result;
         }
 
         public IEnumerable<Post> GetGroupPosts(int? id)

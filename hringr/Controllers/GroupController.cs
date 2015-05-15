@@ -125,28 +125,18 @@ namespace hringr.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpPost, ActionName("Join")]
-        [ValidateAntiForgeryToken]
         public ActionResult AddMemberToGroup(int id)
         {
-            var currentUser = userRepo.GetUserByUserName(User.Identity.GetUserName(), m_db);
-            var group = groupRepo.GetGroupById(id);
-            var groupMember = groupRepo.FindGroup(currentUser.Id, group.ID);
-            if(groupMember == null)
+            var userID = User.Identity.GetUserId();
+            GroupMember gm = new GroupMember
             {
-                GroupMember memberModel = new GroupMember
-                {
-                    user = currentUser,
-                    groups = group,
-                    deleted = false
-                };
-                groupRepo.AddToGroup(memberModel);
-            }
-            else
-            {
-                groupRepo.AddToGroup(groupMember);
-            }
-            return RedirectToAction("Details", "Group", new {id = group.ID});
+                groupID = id,
+                userID = userID
+            };
+
+            groupRepo.AddToGroup(gm);
+
+            return RedirectToAction("Details", "Group", new {id = gm.groupID});
         }
 
         public ActionResult RemoveMemberFromGroup(int id)
@@ -159,9 +149,10 @@ namespace hringr.Controllers
             return RedirectToAction("Details", "Group", new {id = groupID});
         }
 
-        public ActionResult GetMembersInGroup(int id)
+        public ActionResult Members(int id)
         {
-            return View();
+            var model = groupRepo.GetMembers(id);
+            return View(model);
         }
     }
 }
