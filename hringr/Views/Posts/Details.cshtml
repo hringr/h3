@@ -3,22 +3,19 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>
-    @Html.DisplayFor(model => model.title)
-    <span class="pull-right">
-        <a href="../"> <img src="../../images/ugla2.png" width="60" height="60" class="pull-left" /></a>
-    </span>
-</h2>
-
 <div class="well">
+    <h2>
+        @Html.DisplayFor(model => model.title)
+        <span class="pull-right">
+            <a href="../"> <img src="../../images/ugla2.png" width="60" height="60" class="pull-left" /></a>
+        </span>
+    </h2>
     <span class="pull-right">
         @Html.HiddenFor(model => model.ID)
         @Html.DisplayFor(model => model.date)
     </span>
     <h4>@Html.DisplayFor(model => model.text)</h4>
-    <!--<hr/>-->
-    <br/>
+    <br />
     <dl class="right">
         <dd>
             @Html.LabelFor(model => model.link, "Link:")
@@ -30,9 +27,9 @@
             @Html.DisplayFor(model => model.category.name)
         </dd>
     </dl>
+    <p>
+        @Html.ActionLink("Back to List", "Index") |
+        @Html.ActionLink("Edit", "Edit", new {id = Model.ID}) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ID })
+    </p>
 </div>
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
