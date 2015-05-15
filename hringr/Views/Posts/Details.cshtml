@@ -15,13 +15,11 @@
         @Html.DisplayFor(model => model.date)
     </span>
     <h4>@Html.DisplayFor(model => model.text)</h4>
-    <br />
     <dl class="right">
         <dd>
             @Html.LabelFor(model => model.link, "Link:")
             <a href="@Model.link">@Model.link</a>
         </dd>
-
         <dd>
             @Html.LabelFor(model => model.category, "Category:")
             @Html.DisplayFor(model => model.category.name)
