@@ -74,6 +74,12 @@ namespace hringr.Controllers
                 string currentUserId = User.Identity.GetUserId();
                 ApplicationUser currentUser = postRepo.GetCurrentUser(currentUserId, m_db);
                 post.user = currentUser;
+                string url = post.link;
+                Uri uri;
+                if (Uri.TryCreate(url, UriKind.Absolute, out uri) || Uri.TryCreate("http://" + url, UriKind.Absolute, out uri))
+                {
+                    post.link = uri.ToString();
+                }
                 postRepo.AddPost(post, m_db);
                 return RedirectToAction("Index");
             }
