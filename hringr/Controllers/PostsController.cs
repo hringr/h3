@@ -48,12 +48,6 @@ namespace hringr.Controllers
         [Authorize]
         public ActionResult Create(int? id)
         {
-            // Controller myndi taka við postRepo.GetCategories() sem væru af taginu Category
-            // Og fara svo í gegnum hvern og einn og búa til lista af SelectListItem
-
-            //IEnumerable<Category> categories = postRepo.GetCategories();
-
-
             CreatePostViewModel viewModel = new CreatePostViewModel();
             viewModel.categories = postRepo.GetCategories(m_db);
             viewModel.post = new Post();
