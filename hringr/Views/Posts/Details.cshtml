@@ -9,13 +9,16 @@
         <span class="pull-right">
             <a href="../"> <img src="../../images/ugla2.png" width="60" height="60" /></a>
         </span>
+        <small class="pull-right">@Html.DisplayFor(model => model.date)</small>
     </h2>
         @Html.HiddenFor(model => model.ID)
-        @Html.DisplayFor(model => model.date)
+    
+    <small class="pull-right">by @Html.ActionLink(Model.user.UserName, "Details", "User", new { u = Model.user.UserName }, null)</small>
     <p>
-        <br/>
+        <br />
         @Html.DisplayFor(model => model.text)
     </p>
+
     <dl class="right">
         <dd>
             @Html.LabelFor(model => model.link, "Link:")
@@ -28,7 +31,7 @@
     </dl>
     <p>
         @Html.ActionLink("Back to List", "Index") |
-        @Html.ActionLink("Edit", "Edit", new {id = Model.ID}) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
         @Html.ActionLink("Delete", "Delete", new { id = Model.ID })
     </p>
 </div>
