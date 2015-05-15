@@ -4,6 +4,7 @@ using hringr.Models;
 using System;
 using System.Configuration;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using WebGrease.Css.Ast.Selectors;
 using Microsoft.AspNet.Identity;
 
@@ -35,16 +36,36 @@ namespace hringr.Repository
             //    select p
             //    ).ToList().Take(10);
 
-            var result = (
+            //var result = (
+            //    from f in m_db.Follows
+            //    join p in m_db.Posts on f.followee.Id equals p.user.Id
+            //    where f.followee.Id.Equals(uid)
+            //    && p.user.Id.Equals(f.user.Id)
+            //    //&& f.deleted.Equals(false)
+            //    orderby p.date descending 
+            //    select p
+            //    ).ToList().Take(10);
+
+            var followees = (
                 from f in m_db.Follows
-                join p in m_db.Posts on f.followee.Id equals p.user.Id
                 where f.user.Id.Equals(uid)
-                && p.user.Id.Equals(f.followee.Id)
                 && f.deleted.Equals(false)
-                orderby p.date descending 
-                select p
-                ).ToList().Take(10);
-            return result;
+                select f.followee).ToList();
+
+            IList<Post> posts = new List<Post>();
+
+            foreach (var f in followees)
+            {
+                var x = GetPostListByUserId(f.Id, m_db);
+                x.CopyItemsTo(posts);
+            }
+            var results = (
+                from x in posts
+                orderby x.date descending
+                select x
+                ).ToList();
+
+            return results;
         }
 
         public Post GetPostById(int? id, ApplicationDbContext m_db)
@@ -65,7 +86,16 @@ namespace hringr.Repository
                 ).ToList();
             return result;
         }
-
+        public IList<Post> GetPostListByUserId(string id, ApplicationDbContext m_db)
+        {
+            var result = (
+                from x in m_db.Posts
+                where x.user.Id.Equals(id)
+                orderby x.date descending
+                select x
+                ).ToList();
+            return result;
+        }
         public void AddPost(Post n, ApplicationDbContext m_db)
         {
             m_db.Posts.Add(n);

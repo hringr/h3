@@ -82,8 +82,6 @@ namespace hringr.Controllers
         {
             if (ModelState.IsValid)
             {
-                /*db.Entry(group).State = EntityState.Modified;
-                db.SaveChanges();*/
                 groupRepo.UpdateGroup(group);
                 return RedirectToAction("Index");
             }
