@@ -8,6 +8,8 @@ namespace hringr.Models
 
         public virtual ApplicationUser user { get; set; }
 
-        public virtual Group group { get; set; }
+        public virtual Group groups { get; set; }
+
+        public bool deleted { get; set; }
     }
 }

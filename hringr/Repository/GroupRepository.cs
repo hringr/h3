@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using hringr.Models;
 using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace hringr.Repository
 {
@@ -55,6 +56,47 @@ namespace hringr.Repository
         {
             m_db.Groups.Remove(n);
             m_db.SaveChanges();
+        }
+
+        public GroupMember FindGroup(string uID, int gID)
+        {
+            var result =(from x in m_db.GroupMembers
+                             where x.user.Id == uID
+                             && x.groups.ID == gID
+                             select x).SingleOrDefault();
+            return result;
+        }
+
+        public void AddToGroup(GroupMember model)
+        {
+            if(model.deleted.Equals(null))
+            {
+                m_db.GroupMembers.Add(model);
+            }
+            else
+            {
+                model.deleted = false;
+            }
+            m_db.SaveChanges();
+        }
+
+        public void RemoveFromGroup(string uID, int gID)
+        {
+            var result = (from x in m_db.GroupMembers
+                          where x.user.Id == uID
+                          && x.groups.ID == gID
+                          select x).First();
+            result.deleted = true;
+            m_db.SaveChanges();
+        }
+
+        public IEnumerable<SelectListItem> GetMembers()
+        {
+            return m_db.GroupMembers.Select(x => new SelectListItem
+                {
+                    Text = x.user.FullName,
+                    Value = x.user.Id
+                });
         }
     }
 }

@@ -4,13 +4,15 @@ using System.Net;
 using System.Web.Mvc;
 using hringr.Models;
 using hringr.Repository;
+using Microsoft.AspNet.Identity;
 
 namespace hringr.Controllers
 {
     public class GroupController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private GroupRepository groupRepo = new GroupRepository();
+        private ApplicationDbContext m_db = new ApplicationDbContext();
+        private readonly GroupRepository groupRepo = new GroupRepository();
+        private readonly UserRepository userRepo = new UserRepository();
 
         // GET: /Group/
         public ActionResult Index()
@@ -26,7 +28,7 @@ namespace hringr.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = groupRepo.GetGroupById(id);
+            var group = groupRepo.GetGroupById(id);
             if (group == null)
             {
                 return HttpNotFound();
@@ -117,9 +119,48 @@ namespace hringr.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                m_db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost, ActionName("Join")]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddMemberToGroup(int id)
+        {
+            var currentUser = userRepo.GetUserByUserName(User.Identity.GetUserName(), m_db);
+            var group = groupRepo.GetGroupById(id);
+            var groupMember = groupRepo.FindGroup(currentUser.Id, group.ID);
+            if(groupMember == null)
+            {
+                GroupMember memberModel = new GroupMember
+                {
+                    user = currentUser,
+                    groups = group,
+                    deleted = false
+                };
+                groupRepo.AddToGroup(memberModel);
+            }
+            else
+            {
+                groupRepo.AddToGroup(groupMember);
+            }
+            return RedirectToAction("Details", "Group", new {id = group.ID});
+        }
+
+        public ActionResult RemoveMemberFromGroup(int id)
+        {
+            var user = userRepo.GetUserByUserName(User.Identity.GetUserName(), m_db);
+            var group = groupRepo.GetGroupById(id);
+            string userID = user.Id;
+            int groupID = group.ID;
+            groupRepo.RemoveFromGroup(userID, groupID);
+            return RedirectToAction("Details", "Group", new {id = groupID});
+        }
+
+        public ActionResult GetMembersInGroup(int id)
+        {
+            return View();
         }
     }
 }

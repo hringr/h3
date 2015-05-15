@@ -15,7 +15,10 @@
         {
             <div class="well">
                 <h3>
-                    @Html.ActionLink(item.name, "Details", new { id = item.ID })
+                    @using (Html.BeginForm()) {
+                        @Html.AntiForgeryToken()
+                        @Html.ActionLink(item.name, "Details", new { id = item.ID }) <small class=" pull-right"><input type="submit" value="Join" class="btn btn-default" /></small>
+                    }
                 </h3>
                 <p>
                     @Html.DisplayFor(modelItem => item.member)
