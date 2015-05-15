@@ -83,8 +83,10 @@ function GetLikes(id) {
 
 $(".like-btn").click(function() {
     $("#" + this.id).removeClass("btn-default").addClass("btn-success");
+    $("#" + this.id + " .count").text(parseInt($("#" + this.id + " .count").text()) + 1);
 });
 
 $(".dislike-btn").click(function () {
     $("#" + this.id).removeClass("btn-default").addClass("btn-danger");
+    $("#" + this.id + " .count").text(parseInt($("#" + this.id + " .count").text()) + 1);
 });

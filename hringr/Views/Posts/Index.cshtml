@@ -37,7 +37,7 @@
                     else
                     {
                         <a class="dislike-btn like-comment pull-right btn btn-default btn-xs" id="dislike-@item.ID" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddDislike(@item.ID); return false;' href="#">
-                            <span class="glyphicon glyphicon-thumbs-down"> </span> Dislike
+                            <span class="glyphicon glyphicon-thumbs-down"> </span> Dislike <span class="count">@item.dislikes.Count()</span>
                         </a>
                     }
 
@@ -49,7 +49,7 @@
                     else
                     {
                         <a class="like-btn like-comment pull-right btn btn-default btn-xs space" id="like-@item.ID" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddLike(@item.ID); return false;' href="#">
-                     <span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+                     <span class="glyphicon glyphicon-thumbs-up"></span> Like <span class="count">@item.likes.Count()</span></a>
                     }
 
 
