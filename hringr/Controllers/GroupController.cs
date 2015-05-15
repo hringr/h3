@@ -127,12 +127,13 @@ namespace hringr.Controllers
 
         public ActionResult AddMemberToGroup(int id)
         {
-            var userID = User.Identity.GetUserId();
+            var uID = User.Identity.GetUserId();
             GroupMember gm = new GroupMember
             {
                 groupID = id,
-                userID = userID
+                userID = uID
             };
+
 
             groupRepo.AddToGroup(gm);
 

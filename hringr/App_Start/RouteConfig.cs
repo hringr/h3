@@ -29,6 +29,12 @@ namespace hringr
                 );
 
             routes.MapRoute(
+                name: "GroupPostCreate",
+                url: "Posts/{action}/{id}",
+                defaults: new { controller = "Posts", action = "Create", id = UrlParameter.Optional }
+                );
+
+            routes.MapRoute(
                 name: "Follow",
                 url: "{controller}/{action}/{u}",
                 defaults: new { controller = "Follow", action = "Add" }

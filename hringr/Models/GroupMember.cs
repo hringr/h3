@@ -8,6 +8,7 @@ namespace hringr.Models
         {
             deleted = false;
         }
+
         public int ID { get; set; }
 
         public string userID { get; set; }

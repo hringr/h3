@@ -99,6 +99,7 @@ namespace hringr.Repository
             var results = (
                 from x in m_db.Posts
                 where x.groupID == id
+                orderby x.date descending
                 select x
                 ).ToList();
 

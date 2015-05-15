@@ -10,16 +10,19 @@
     <a href="../"> <img src="../../images/ugla2.png" width="60" height="60" class="pull-left" /></a>
 </span>
 <div>
+    <p>
+        @Html.ActionLink("Create a new post", "Create", "Posts", new { id = Model.ID }, null)
+    </p>
     @foreach (var item in Model.posts)
     {
         <div class="well">
             <h3>
-                @Html.ActionLink(item.title, "Details", new { id = item.ID }) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
+                @Html.ActionLink(item.title, "Details", new {id = item.ID}) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
             </h3>
             <p>
                 <label>Category:</label>
                 @Html.DisplayFor(modelItem => item.category.name)
-                <small class="pull-right">by @Html.ActionLink(item.user.UserName, "Details", "User", new { u = item.user.UserName }, null)</small>
+                <small class="pull-right">by @Html.ActionLink(item.user.UserName, "Details", "User", new {u = item.user.UserName}, null)</small>
             </p>
             <p>
                 @*@if (item.dislikes.Any(dislike => dislike.userID.Equals(User.Identity.GetUserId()) && dislike.valid.Equals(true)))

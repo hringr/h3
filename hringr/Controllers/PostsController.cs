@@ -46,7 +46,7 @@ namespace hringr.Controllers
 
         // GET: Posts/Create
         [Authorize]
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             // Controller myndi taka við postRepo.GetCategories() sem væru af taginu Category
             // Og fara svo í gegnum hvern og einn og búa til lista af SelectListItem
@@ -57,6 +57,11 @@ namespace hringr.Controllers
             CreatePostViewModel viewModel = new CreatePostViewModel();
             viewModel.categories = postRepo.GetCategories(m_db);
             viewModel.post = new Post();
+
+            if (id != null)
+            {
+                viewModel.post.groupID = id.GetValueOrDefault();
+            }
 
             return View(viewModel);
         
