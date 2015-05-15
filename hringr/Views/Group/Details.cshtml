@@ -25,31 +25,6 @@
                 <small class="pull-right">by @Html.ActionLink(item.user.UserName, "Details", "User", new {u = item.user.UserName}, null)</small>
             </p>
             <p>
-                @*@if (item.dislikes.Any(dislike => dislike.userID.Equals(User.Identity.GetUserId()) && dislike.valid.Equals(true)))
-                {
-                    <a class="like-comment pull-right btn btn-danger btn-xs" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='RemoveDislike(@item.ID); return false;' href="#">
-                        <span class="glyphicon glyphicon-thumbs-down"> </span> Dislike
-                    </a>
-                }
-                else
-                {
-                    <a class="like-comment pull-right btn btn-default btn-xs" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddDislike(@item.ID); return false;' href="#">
-                        <span class="glyphicon glyphicon-thumbs-down"> </span> Dislike
-                    </a>
-                }
-
-                @if (item.likes.Any(like => like.userID.Equals(User.Identity.GetUserId()) && like.valid.Equals(true)))
-                {
-                    <a class="like-comment pull-right btn btn-success btn-xs space" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='RemoveLike(@item.ID); return false;' href="#">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> @item.likes.Count()</a>
-                }
-                else
-                {
-                    <a class="like-comment pull-right btn btn-default btn-xs space" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddLike(@item.ID); return false;' href="#">
-                    <span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
-                }*@
-
-
                 @Html.ActionLink("Comment", "Create", "Comments", new {id = item.ID}, null) |
                 @Html.ActionLink("Edit", "Edit", "Posts", new {id = item.ID}, null) |
                 @Html.ActionLink("Delete", "Delete", "Posts", new {id = item.ID}, null)
@@ -57,8 +32,3 @@
         </div>
     }
 </div>
-@*<p>
-    @Html.ActionLink("Edit", "Edit", new {id = Model.ID}) |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
