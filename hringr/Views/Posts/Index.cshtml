@@ -24,6 +24,7 @@
                 <p>
                     <label>Category:</label>
                     @Html.DisplayFor(modelItem => item.category.name)
+                    <small class="pull-right">by @Html.ActionLink(item.user.UserName, "Details", "User", new { u = item.user.UserName }, null)</small>
                 </p>
                 <p>
                     @if (item.dislikes.Any(dislike => dislike.userID.Equals(User.Identity.GetUserId()) && dislike.valid.Equals(true)))
@@ -38,22 +39,22 @@
                             <span class="glyphicon glyphicon-thumbs-down"> </span> Dislike
                         </a>
                     }
-                    
+
                     @if (item.likes.Any(like => like.userID.Equals(User.Identity.GetUserId())))
                     {
                         <a class="like-comment pull-right btn btn-success btn-xs space" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddLike(@item.ID); return false;' href="#">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+                            <span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
                     }
                     else
                     {
                         <a class="like-comment pull-right btn btn-primary btn-xs space" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddLike(@item.ID); return false;' href="#">
-                     <span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+                            <span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
                     }
 
 
-                    @Html.ActionLink("Comment", "Create", "Comments", new { id = item.ID }, null) |
-                    @Html.ActionLink("Edit", "Edit", "Posts", new { id = item.ID }, null) |
-                    @Html.ActionLink("Delete", "Delete", "Posts", new { id = item.ID }, null)
+                    @Html.ActionLink("Comment", "Create", "Comments", new {id = item.ID}, null) |
+                    @Html.ActionLink("Edit", "Edit", "Posts", new {id = item.ID}, null) |
+                    @Html.ActionLink("Delete", "Delete", "Posts", new {id = item.ID}, null)
                 </p>
             </div>
         }

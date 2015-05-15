@@ -22,7 +22,8 @@ namespace hringr.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var posts = postRepo.GetAllPosts(m_db);
+            var currentUserId = User.Identity.GetUserId();
+            var posts = postRepo.GetAllPosts(currentUserId, m_db);
             posts = postRepo.GetPostLikes(posts, m_db);
             return View(posts);
         }
@@ -164,7 +165,16 @@ namespace hringr.Controllers
                 };
 
                 if (!postRepo.userLikedBefore(lk, m_db))
+                {
                     postRepo.AddLike(lk, m_db);
+                }
+                else
+                {
+                    if (postRepo.IsLikeValid(lk, m_db))
+                    {
+                        postRepo.AddLike(lk, m_db);
+                    }
+                }
 
                 return Json(lk, JsonRequestBehavior.AllowGet);
             }
@@ -185,7 +195,9 @@ namespace hringr.Controllers
                 };
 
                 if (!postRepo.userDislikedBefore(lk, m_db))
+                {
                     postRepo.AddDislike(lk, m_db);
+                }
 
                 return Json(lk, JsonRequestBehavior.AllowGet);
             }

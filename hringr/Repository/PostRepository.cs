@@ -2,7 +2,10 @@
 using System.Linq;
 using hringr.Models;
 using System;
+using System.Configuration;
 using System.Web.Mvc;
+using WebGrease.Css.Ast.Selectors;
+using Microsoft.AspNet.Identity;
 
 namespace hringr.Repository
 {
@@ -22,12 +25,24 @@ namespace hringr.Repository
 
         //private ApplicationDbContext m_db = new ApplicationDbContext();
 
-        public IEnumerable<Post> GetAllPosts(ApplicationDbContext m_db)
+        public IEnumerable<Post> GetAllPosts(string uid, ApplicationDbContext m_db)
         {
+            //var result = (
+            //    from p in m_db.Posts
+            //    join f in m_db.Follows on p.user.Id equals f.followee.Id
+            //    where f.user.Id.Equals(uid) 
+            //    orderby p.date descending
+            //    select p
+            //    ).ToList().Take(10);
+
             var result = (
-                from n in m_db.Posts
-                orderby n.date descending
-                select n
+                from f in m_db.Follows
+                join p in m_db.Posts on f.followee.Id equals p.user.Id
+                where f.user.Id.Equals(uid)
+                && p.user.Id.Equals(f.followee.Id)
+                && f.deleted.Equals(false)
+                orderby p.date descending 
+                select p
                 ).ToList().Take(10);
             return result;
         }
@@ -77,6 +92,16 @@ namespace hringr.Repository
             m_db.SaveChanges();
         }
 
+        public Like GetLikeById(int id, ApplicationDbContext m_db)
+        {
+            var result = (
+                from x in m_db.Likes
+                where x.ID.Equals(id)
+                select x
+                ).FirstOrDefault();
+            return result;
+        }
+
         public IEnumerable<Like> GetLikes(int id, ApplicationDbContext m_db)
         {
             var result = 
@@ -96,6 +121,16 @@ namespace hringr.Repository
                 post.likes = GetLikes(post.ID, m_db);
                 post.dislikes = GetDislikes(post.ID, m_db);
             }
+            return result;
+        }
+
+        public Dislike GetDislikeById(int id, ApplicationDbContext m_db)
+        {
+            var result = (
+                from x in m_db.Dislikes
+                where x.ID.Equals(id)
+                select x
+                ).FirstOrDefault();
             return result;
         }
 
@@ -119,12 +154,19 @@ namespace hringr.Repository
             m_db.SaveChanges();
         }
 
+        public bool IsLikeValid(Like lk, ApplicationDbContext m_db)
+        {
+            return true;
+        }
+
         public bool userLikedBefore(Like lk, ApplicationDbContext m_db)
         {
             foreach (var like in m_db.Likes)
             {
                 if (like.postID.Equals(lk.postID) && like.userID.Equals(lk.userID))
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -134,7 +176,9 @@ namespace hringr.Repository
             foreach (var dislike in m_db.Dislikes)
             {
                 if (dislike.postID.Equals(lk.postID) && dislike.userID.Equals(lk.userID))
+                {
                     return true;
+                }
             }
             return false;
         }
