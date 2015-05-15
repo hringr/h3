@@ -36,19 +36,19 @@
                     }
                     else
                     {
-                        <a class="like-comment pull-right btn btn-default btn-xs" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddDislike(@item.ID); return false;' href="#">
+                        <a class="dislike-btn like-comment pull-right btn btn-default btn-xs" id="dislike-@item.ID" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddDislike(@item.ID); return false;' href="#">
                             <span class="glyphicon glyphicon-thumbs-down"> </span> Dislike
                         </a>
                     }
 
                     @if (item.likes.Any(like => like.userID.Equals(User.Identity.GetUserId()) && like.valid.Equals(true)))
                     {
-                        <a class="like-comment pull-right btn btn-success btn-xs space" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='RemoveLike(@item.ID); return false;' href="#">
+                        <a class= "like-comment pull-right btn btn-success btn-xs space" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='RemoveLike(@item.ID); return false;' href="#">
                             <span class="glyphicon glyphicon-thumbs-up"></span> @item.likes.Count()</a>
                     }
                     else
                     {
-                        <a class="like-comment pull-right btn btn-default btn-xs space" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddLike(@item.ID); return false;' href="#">
+                        <a class="like-btn like-comment pull-right btn btn-default btn-xs space" id="like-@item.ID" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddLike(@item.ID); return false;' href="#">
                      <span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
                     }
 
