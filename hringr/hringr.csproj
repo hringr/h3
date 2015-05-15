@@ -196,6 +196,7 @@
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Services\IdentityService.cs" />
     <Compile Include="Services\PostService.cs" />
+    <Compile Include="Services\RedditRankingService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
