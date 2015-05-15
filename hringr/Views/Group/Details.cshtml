@@ -1,29 +1,61 @@
-﻿@model hringr.Models.Group
+﻿@using Microsoft.AspNet.Identity
+@model hringr.Models.Group
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Groups</h2>
+<h2>@Html.DisplayFor(model => model.name)</h2>
 <span class="pull-right">
     <a href="../"> <img src="../../images/ugla2.png" width="60" height="60" class="pull-left" /></a>
 </span>
 <div>
-    <h4>Group details</h4>
-	<br />
-    <dl class="well">
-        <dt>
-            @Html.LabelFor(model => model.name, "Group name:")
-        </dt>
+    @foreach (var item in Model.posts)
+    {
+        <div class="well">
+            <h3>
+                @Html.ActionLink(item.title, "Details", new { id = item.ID }) <small class="pull-right">@Html.DisplayFor(modelItem => item.date) </small>
+            </h3>
+            <p>
+                <label>Category:</label>
+                @Html.DisplayFor(modelItem => item.category.name)
+                <small class="pull-right">by @Html.ActionLink(item.user.UserName, "Details", "User", new { u = item.user.UserName }, null)</small>
+            </p>
+            <p>
+                @*@if (item.dislikes.Any(dislike => dislike.userID.Equals(User.Identity.GetUserId()) && dislike.valid.Equals(true)))
+                {
+                    <a class="like-comment pull-right btn btn-danger btn-xs" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='RemoveDislike(@item.ID); return false;' href="#">
+                        <span class="glyphicon glyphicon-thumbs-down"> </span> Dislike
+                    </a>
+                }
+                else
+                {
+                    <a class="like-comment pull-right btn btn-default btn-xs" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddDislike(@item.ID); return false;' href="#">
+                        <span class="glyphicon glyphicon-thumbs-down"> </span> Dislike
+                    </a>
+                }
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+                @if (item.likes.Any(like => like.userID.Equals(User.Identity.GetUserId()) && like.valid.Equals(true)))
+                {
+                    <a class="like-comment pull-right btn btn-success btn-xs space" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='RemoveLike(@item.ID); return false;' href="#">
+                        <span class="glyphicon glyphicon-thumbs-up"></span> @item.likes.Count()</a>
+                }
+                else
+                {
+                    <a class="like-comment pull-right btn btn-default btn-xs space" data-template-bind='{"attribute": "id", "value": "postingID"}' onclick='AddLike(@item.ID); return false;' href="#">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+                }*@
 
-    </dl>
+
+                @Html.ActionLink("Comment", "Create", "Comments", new {id = item.ID}, null) |
+                @Html.ActionLink("Edit", "Edit", "Posts", new {id = item.ID}, null) |
+                @Html.ActionLink("Delete", "Delete", "Posts", new {id = item.ID}, null)
+            </p>
+        </div>
+    }
 </div>
-<p>
+@*<p>
     @Html.ActionLink("Edit", "Edit", new {id = Model.ID}) |
     @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@

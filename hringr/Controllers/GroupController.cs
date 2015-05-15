@@ -33,6 +33,9 @@ namespace hringr.Controllers
             {
                 return HttpNotFound();
             }
+
+            group.posts = groupRepo.GetGroupPosts(id);
+
             return View(group);
         }
 

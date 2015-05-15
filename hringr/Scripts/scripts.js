@@ -49,14 +49,19 @@ function GetAllComments() {
     })
 }*/
 
-function AddLike(x)
-{
+function AddLike(x) {
     $.post("/Posts/AddLike?postingID=" + x);
 }
 
-function AddDislike(x)
-{
+function RemoveLike(x) {
+    $.post("/Posts/RemoveLike?postingID=" + x);
+}
+
+function AddDislike(x) {
     $.post("/Posts/AddDislike?postingID=" + x);
+}
+function RemoveDislike(x) {
+    $.post("/Posts/RemoveDislike?postingID=" + x);
 }
 
 function GetLikes(id) {

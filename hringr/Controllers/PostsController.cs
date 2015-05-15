@@ -190,6 +190,22 @@ namespace hringr.Controllers
             }
         }
 
+        public ActionResult RemoveLike(int postingID)
+        {
+            if (postingID != 0)
+            {
+                Like lk = postRepo.GetLikeById(postingID, m_db);
+
+                lk.valid = false;
+
+                return Json(lk, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Index();
+            }
+        }
+
         public ActionResult AddDislike(int postingID)
         {
             if (postingID != 0)
@@ -204,6 +220,22 @@ namespace hringr.Controllers
                 {
                     postRepo.AddDislike(lk, m_db);
                 }
+
+                return Json(lk, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Index();
+            }
+        }
+
+        public ActionResult RemoveDislike(int postingID)
+        {
+            if (postingID != 0)
+            {
+                Dislike lk = postRepo.GetDislikeById(postingID, m_db);
+
+                lk.valid = false;
 
                 return Json(lk, JsonRequestBehavior.AllowGet);
             }
