@@ -6,13 +6,16 @@
 <div class="well">
     <h2>
         @Html.DisplayFor(model => model.title)
+
         <span class="pull-right">
-            <a href="../"> <img src="../../images/ugla2.png" width="60" height="60" /></a>
+            <a href="../"> <img src="../../images/ugla2.png" width="60" height="60" alt="Owl" /></a>
         </span>
     </h2>
+    <p>by @Html.ActionLink(Model.user.UserName, "Details", "User", new { u = Model.user.UserName }, null)</p>
+
+    <p>
         @Html.HiddenFor(model => model.ID)
         @Html.DisplayFor(model => model.date)
-    <p>
         <br/>
         @Html.DisplayFor(model => model.text)
     </p>

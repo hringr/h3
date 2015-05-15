@@ -26,14 +26,14 @@ namespace hringr.Repository
             return result;
         }
 
-        public IEnumerable<Group> GetGroupByUserId(string id)
-        {
-            var result = (from x in m_db.Groups
-                          where x.user.Id == id
-                          orderby x.name ascending
-                          select x).ToList();
-            return result;
-        }
+        //public IEnumerable<Group> GetGroupByUserId(string id)
+        //{
+        //    var result = (from x in m_db.Groups
+        //                  where x.users..Id == id
+        //                  orderby x.name ascending
+        //                  select x).ToList();
+        //    return result;
+        //}
 
         public void CreateGroup(Group n)
         {
@@ -47,7 +47,7 @@ namespace hringr.Repository
             if (t != null)
             {
                 t.name = n.name;
-                t.user = n.user;
+                //t.user = n.user;
                 m_db.SaveChanges();
             }
         }
@@ -98,5 +98,16 @@ namespace hringr.Repository
                     Value = x.user.Id
                 });
         }
+
+        public IEnumerable<Post> GetGroupPosts(int? id)
+        {
+            var results = (
+                from x in m_db.Posts
+                where x.groupID == id
+                select x
+                ).ToList();
+
+            return results;
+        } 
     }
 }

@@ -186,7 +186,7 @@ namespace hringr.Repository
 
         public bool IsLikeValid(Like lk, ApplicationDbContext m_db)
         {
-            return true;
+            return lk.valid;
         }
 
         public bool userLikedBefore(Like lk, ApplicationDbContext m_db)
