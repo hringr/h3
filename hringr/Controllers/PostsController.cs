@@ -86,6 +86,12 @@ namespace hringr.Controllers
                     post.link = uri.ToString();
                 }
                 postRepo.AddPost(post, m_db);
+
+                if (post.groupID != 0)
+                {
+                    return RedirectToAction("Details", "Group", new { id = post.groupID });
+                }
+
                 return RedirectToAction("Index");
             }
             
