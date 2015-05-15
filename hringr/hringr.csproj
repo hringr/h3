@@ -182,7 +182,6 @@
     <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupMember.cs" />
-    <Compile Include="Models\GroupViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Models\Like.cs" />
